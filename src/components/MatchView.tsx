@@ -7,7 +7,7 @@ type MatchProps = {
 }
 
 const matchWrapperClass = clsx(
-  'max-w-[350px]',
+  'w-full max-w-[350px]',
   'grid grid-cols-[1fr,32px,32px,1fr] gap-1 items-center self-start',
   'bg-vctMid-500',
   'rounded'

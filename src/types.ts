@@ -18,6 +18,7 @@ export type Team = {
 
 export type Match = {
   id: number
+  group?: 'alpha' | 'omega'
   week: number
   team1: Teams
   team2: Teams
