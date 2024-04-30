@@ -8,7 +8,7 @@ type AppProps = { router: ReturnType<typeof createRouter> }
 const App = ({ router }: AppProps): FunctionComponent => {
   return (
     <>
-      <RouterProvider router={router} />
+      <RouterProvider router={router} basepath="/vct-stage" />
       <TanStackRouterDevtools
 				router={router}
 				initialIsOpen={false}
