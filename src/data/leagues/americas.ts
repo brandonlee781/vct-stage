@@ -13,7 +13,7 @@ export const americasLeague: League = {
     ],
     omega: [
       { name: Teams['100T'], wins: 2, losses: 2, mapWins: 5, mapLosses: 4, roundDiff: 3 },
-      { name: Teams.EG, wins: 2, losses: 3, mapWins: 5, mapLosses: 8, roundDiff: -28 },
+      { name: Teams.EG, wins: 1, losses: 3, mapWins: 5, mapLosses: 8, roundDiff: -28 },
       { name: Teams.FUR, wins: 0, losses: 4, mapWins: 0, mapLosses: 8, roundDiff: -50 },
       { name: Teams.LEV, wins: 3, losses: 1, mapWins: 7, mapLosses: 3, roundDiff: 26 },
       { name: Teams.LLL, wins: 1, losses: 3, mapWins: 3, mapLosses: 6, roundDiff: -24 },

@@ -1,9 +1,6 @@
-import { useEditableMatches } from '../providers/EditableMatchesProvider'
 import { Match, Team } from '../types'
 
-export const useCombinedData = (group: Team[]) => {
-  const matches = useEditableMatches()
-
+export const combinedData = (group: Team[], matches: Match[]) => {
   const originalSort = [...group].sort(sortTeams)
 
   const combinedData = group.map(team => {

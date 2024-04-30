@@ -17,8 +17,8 @@ const LeaguePage = (): FunctionComponent => {
       <LeagueToolbar />
       <div className="flex flex-nowrap w-screen justify-center p-4">
         <div className="grid grid-rows-[fit-content,1fr] grid-cols-2 gap-4">
-          <GroupTable name="Alpha" group={league.teams.alpha} />
-          <GroupTable name="Omega" group={league.teams.omega} />
+          <GroupTable name="Alpha" />
+          <GroupTable name="Omega" />
           <MatchList />
         </div>
       </div>

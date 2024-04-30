@@ -4,14 +4,15 @@ import { Table } from '@/components/Table';
 
 type TeamRowProps = {
   team: Team & { sortDiff: number }
-  index: number
+  index: number,
+  playoffSpots: number
 }
-export const TeamRow = ({ team, index }: TeamRowProps): FunctionComponent => {
+export const TeamRow = ({ team, index, playoffSpots }: TeamRowProps): FunctionComponent => {
   return (
     <Table.TableRow>
       <td>
         <div className="flex flex-nowrap h-full items-center">
-          <div className={clsx('w-1 mr-1 h-full', index <= 2 ? 'bg-blue-500' : 'bg-red-300')}>&nbsp;</div>
+          <div className={clsx('w-1 mr-1 h-full', index <= playoffSpots - 1 ? 'bg-blue-500' : 'bg-red-300')}>&nbsp;</div>
           <span>{team.name}</span>
           
           {team.sortDiff !== 0 && (
