@@ -10,8 +10,11 @@ export const LeagueToolbar = (): FunctionComponent => {
   const params = route.useParams<{ leagueId: keyof typeof LEAGUES }>()
   const shareHandler = () => {
     const str = getShareableCode(matches)
-    window.navigator.clipboard.writeText(`https://brandonlee781.github.io/vct-stage/league/${params.leagueId}?s=${str}`)
-    window.alert('Shareable link copied to clipboard')
+    window.navigator.clipboard
+      .writeText(`https://brandonlee781.github.io/vct-stage/league/${params.leagueId}${str.length > 1 ? `?s=${str}` : ''}`)
+      .then(() => {
+        window.alert('Shareable link copied to clipboard')
+      })
   }
   return (
     <div className="relative w-full h-10 bg-slate-700 flex flex-row justify-center items-center px-4">
