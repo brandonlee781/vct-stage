@@ -1,7 +1,7 @@
 import '@/App.css'
 import { FunctionComponent } from '@/lib/types'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/router-devtools'
+import { TanStackRouterDevtools } from './components/utils/TanStackRouterDevtools'
 
 type AppProps = { router: ReturnType<typeof createRouter> }
 
