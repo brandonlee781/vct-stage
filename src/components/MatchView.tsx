@@ -97,6 +97,9 @@ export const MatchView = ({ match }: MatchProps): FunctionComponent => {
 
   const setMapRound = (e: React.ChangeEvent<HTMLInputElement>, index: number, type: 'team1' | 'team2') => {
     const val = parseInt(e.currentTarget.value)
+
+    if (val < 0) return
+
     const map = match.maps[index]
     if (type === 'team1') {
       map.team1Rounds = val
