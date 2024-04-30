@@ -1,1 +1,1 @@
-import "@total-typescript/ts-rese"
+import "@total-typescript/ts-reset"

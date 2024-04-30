@@ -25,18 +25,22 @@ export const EditableMatchesProvider = ({ children, league }: EditableMatchesPro
 type MatchesReducerAction = {
   type: 'edit' | 'reset'
   id: number,
-  data?: Match
+  data?: Partial<Match>
 }
 function matchesReducer(matches: Match[], action: MatchesReducerAction) {
   switch(action.type) {
     case 'edit': {
       const index = matches.findIndex(m => m.id === action.id)
       if (index >= 0 && action.data) {
-        return [
+        const newMatches = [
           ...matches.slice(0, index),
-          action.data,
+          {
+            ...matches[index],
+            ...action.data
+          },
           ...matches.slice(index + 1),
         ]
+        return newMatches
       }
       return matches
     }
@@ -44,7 +48,7 @@ function matchesReducer(matches: Match[], action: MatchesReducerAction) {
       const index = matches.findIndex(m => m.id === action.id)
       if (index >= 0) {
         const mat = matches[index]
-        return [
+        const newMatches = [
           ...matches.slice(0, index),
           {
             id: mat.id,
@@ -55,6 +59,7 @@ function matchesReducer(matches: Match[], action: MatchesReducerAction) {
           },
           ...matches.slice(index + 1),
         ]
+        return newMatches
       }
       return matches
     }

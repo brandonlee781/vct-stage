@@ -25,6 +25,7 @@
     "useTranslation": true,
     "default": true,
     "clsx": true,
-    "IconMdiChevronUp": true
+    "IconMdiChevronUp": true,
+    "IconMdiShare": true
   }
 }

@@ -7,6 +7,7 @@ export {}
 declare global {
   const Fragment: typeof import('react')['Fragment']
   const IconMdiChevronUp: typeof import('~icons/mdi/chevron-up.jsx')['default']
+  const IconMdiShare: typeof import('~icons/mdi/share.jsx')['default']
   const clsx: typeof import('clsx')['default']
   const createContext: typeof import('react')['createContext']
   const createRef: typeof import('react')['createRef']
