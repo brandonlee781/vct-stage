@@ -22,7 +22,7 @@ export type Match = {
   week: number
   team1: Teams
   team2: Teams
-  maps: { team1Rounds: number | null, team2Rounds: number | null }[]
+  maps: { team1Rounds: number, team2Rounds: number }[]
 }
 
 // export type MatchWeek = {

@@ -29,10 +29,10 @@ const getTeamCombined = (team: Team, matches: Match[]) => {
     }
     if (m.team1 === team.name) {
       return maps.reduce((a, b) => {
-        if (b.team1Rounds && b.team1Rounds > (b.team2Rounds || 0)) {
+        if (b.team1Rounds > b.team2Rounds) {
           a.mapWinChange += 1
-          a.roundChange += b.team1Rounds - (b.team2Rounds || 0)
-        } else if (b.team2Rounds && b.team1Rounds && b.team2Rounds > b.team1Rounds) {
+          a.roundChange += b.team1Rounds - b.team2Rounds
+        } else if (b.team2Rounds > b.team1Rounds) {
           a.mapLossChange += 1
           a.roundChange -= b.team2Rounds - b.team1Rounds
         }
@@ -45,10 +45,10 @@ const getTeamCombined = (team: Team, matches: Match[]) => {
       })
     } else {
       return maps.reduce((a, b) => {
-        if (b.team2Rounds && b.team2Rounds > (b.team1Rounds || 0)) {
+        if (b.team2Rounds > b.team1Rounds) {
           a.mapWinChange += 1
-          a.roundChange += b.team2Rounds - (b.team1Rounds || 0)
-        } else if (b.team1Rounds && b.team2Rounds && b.team1Rounds > b.team2Rounds) {
+          a.roundChange += b.team2Rounds - b.team1Rounds
+        } else if (b.team1Rounds > b.team2Rounds) {
           a.mapLossChange += 1
           a.roundChange -= b.team1Rounds - b.team2Rounds
         }
@@ -69,8 +69,8 @@ const getTeamCombined = (team: Team, matches: Match[]) => {
 
   const wins = team.wins + (foundMatches.filter(m => {
     const maps = m.maps
-    const team1Wins = maps.filter(map => map.team1Rounds && map.team1Rounds > (map.team2Rounds || 0))
-    const team2Wins = maps.filter(map => map.team2Rounds && map.team2Rounds > (map.team1Rounds || 0))
+    const team1Wins = maps.filter(map => map.team1Rounds > map.team2Rounds)
+    const team2Wins = maps.filter(map => map.team2Rounds > map.team1Rounds)
     if (m.team1 === team.name) {
       return team1Wins.length > team2Wins.length
     } else if (m.team2 === team.name) {
@@ -80,8 +80,8 @@ const getTeamCombined = (team: Team, matches: Match[]) => {
 
   const losses = team.losses + (foundMatches.filter(m => {
     const maps = m.maps
-    const team1Wins = maps.filter(map => map.team1Rounds && map.team1Rounds > (map.team2Rounds || 0))
-    const team2Wins = maps.filter(map => map.team2Rounds && map.team2Rounds > (map.team1Rounds || 0))
+    const team1Wins = maps.filter(map => map.team1Rounds > map.team2Rounds)
+    const team2Wins = maps.filter(map => map.team2Rounds > map.team1Rounds)
     if (m.team1 === team.name) {
       return team1Wins.length < team2Wins.length
     } else if (m.team2 === team.name) {

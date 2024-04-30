@@ -30,7 +30,7 @@ export const convertShareableCode = (str: string): { id: number; maps: Match['ma
     if (!id) return null
     return {
       id: parseInt(id),
-      maps: groupedScores.map(([first, second]) => ({ team1Rounds: parseInt(first) || 0, team2Rounds: parseInt(second) || 0 }))
+      maps: groupedScores.map(([first, second]) => ({ team1Rounds: parseInt(first), team2Rounds: parseInt(second) }))
     }
   }).filter(Boolean)
 }

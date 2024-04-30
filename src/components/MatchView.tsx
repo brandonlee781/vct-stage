@@ -21,8 +21,8 @@ const showRoundsButtonClass = clsx(
 
 export const MatchView = ({ match }: MatchProps): FunctionComponent => {
   const dispatch = useEditableMatchesDispatch()
-  const team1Score = match.maps.filter(m => m.team1Rounds && m.team1Rounds > (m.team2Rounds || 0)).length
-  const team2Score = match.maps.filter(m => m.team2Rounds && m.team2Rounds > (m.team1Rounds || 0)).length
+  const team1Score = match.maps.filter(m => m.team1Rounds > m.team2Rounds).length
+  const team2Score = match.maps.filter(m =>  m.team2Rounds > m.team1Rounds).length
   const canInceaseScore = team1Score + team2Score < 3
 
   const increaseTeam1Score = () => {
@@ -45,10 +45,10 @@ export const MatchView = ({ match }: MatchProps): FunctionComponent => {
   }
 
   const decreaseTeam1Score = () => {
-    const team1Wins = match.maps.filter(m => m.team1Rounds && m.team1Rounds > (m.team2Rounds || 0))
+    const team1Wins = match.maps.filter(m => m.team1Rounds > m.team2Rounds)
     const maps = [
       ...team1Wins.slice(0, team1Wins.length - 1),
-      ...match.maps.filter(m => m.team2Rounds && m.team2Rounds > (m.team1Rounds || 0))
+      ...match.maps.filter(m => m.team2Rounds > m.team1Rounds)
     ]
     dispatch({
       type: 'edit',
@@ -80,10 +80,10 @@ export const MatchView = ({ match }: MatchProps): FunctionComponent => {
   }
 
   const decreaseTeam2Score = () => {
-    const team1Wins = match.maps.filter(m => m.team2Rounds && m.team2Rounds > (m.team1Rounds || 0))
+    const team1Wins = match.maps.filter(m => m.team2Rounds > m.team1Rounds)
     const maps = [
       ...team1Wins.slice(0, team1Wins.length - 1),
-      ...match.maps.filter(m => m.team1Rounds && m.team1Rounds > (m.team2Rounds || 0))
+      ...match.maps.filter(m => m.team1Rounds > m.team2Rounds)
     ]
     dispatch({
       type: 'edit',
@@ -128,7 +128,7 @@ export const MatchView = ({ match }: MatchProps): FunctionComponent => {
 
   return (
     <div className={matchWrapperClass}>
-      <div className="px-2 text-sm">{match.team1}</div>
+      <div className="px-2 text-white text-sm">{match.team1}</div>
       <MatchViewButton
         onLeftClick={increaseTeam1Score}
         onRightClick={decreaseTeam1Score}
@@ -141,16 +141,16 @@ export const MatchView = ({ match }: MatchProps): FunctionComponent => {
       >
         {team2Score}
       </MatchViewButton>
-      <div className="px-2 text-sm text-right">{match.team2}</div>
+      <div className="px-2 text-white text-sm text-right">{match.team2}</div>
       <div className="row-start-2 col-span-4">
           {showRounds && !!match.maps.length && (
-            <div className="border-t border-gray-600 grid grid-cols-3 gap-1 p-2">
+            <div className="border-t border-gray-600 text-white grid grid-cols-3 gap-1 p-2">
               {match.maps.map((map, index) => {
                 return (
                   <Fragment key={`${match.id}-map-${index}`}>
-                    <input type="number" value={map.team1Rounds || 0} className="max-w-15 pl-2" onChange={(e) => setMapRound(e, index, 'team1')} />
+                    <input type="number" value={map.team1Rounds} className="max-w-15 pl-2" onChange={(e) => setMapRound(e, index, 'team1')} />
                     <span className="text-center">Map {index + 1}</span>
-                    <input type="number" value={map.team2Rounds || 0} className="max-w-15 pl-2" onChange={(e) => setMapRound(e, index, 'team2')} />
+                    <input type="number" value={map.team2Rounds} className="max-w-15 pl-2" onChange={(e) => setMapRound(e, index, 'team2')} />
                   </Fragment>
                 )
               })}
