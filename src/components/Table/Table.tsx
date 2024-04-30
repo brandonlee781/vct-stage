@@ -30,10 +30,10 @@ export const Table = forwardRef<HTMLTableElement, TableProps>(
               <table
                 ref={ref}
                 className={clsx(
-                  'min-w-full h-full divide-y-4 divide-x table-fixed divide-white dark:divide-vctDark-800'
+                  'min-w-full h-full divide-y-4 divide-x table-fixed divide-vctDark-800'
                 )}
               >
-                <thead className="bg-gray-100 dark:bg-vctMid-500">
+                <thead className="bg-vctMid-500">
                   <tr>
                     {headerEls}
                     {!headerEls &&
@@ -61,7 +61,7 @@ export const Table = forwardRef<HTMLTableElement, TableProps>(
                       ))}
                   </tr>
                 </thead>
-                <tbody className="bg-gray-200 dark:bg-vctMid-500 divide-y-4 divide-x-2 divide-white dark:divide-vctDark-800">
+                <tbody className="bg-vctMid-500 divide-y-4 divide-x-2 divide-vctDark-800">
                   {children}
                 </tbody>
               </table>
