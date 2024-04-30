@@ -10,7 +10,6 @@ declare global {
   const clsx: typeof import('clsx')['default']
   const createContext: typeof import('react')['createContext']
   const createRef: typeof import('react')['createRef']
-  const default: typeof import('clsx')['default']
   const forwardRef: typeof import('react')['forwardRef']
   const lazy: typeof import('react')['lazy']
   const memo: typeof import('react')['memo']
