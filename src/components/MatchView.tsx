@@ -133,12 +133,14 @@ export const MatchView = ({ match }: MatchProps): FunctionComponent => {
     <div className={matchWrapperClass}>
       <div className="px-2 text-white text-sm">{match.team1}</div>
       <MatchViewButton
+        disabled={match.completed}
         onLeftClick={increaseTeam1Score}
         onRightClick={decreaseTeam1Score}
       >
         {team1Score}
       </MatchViewButton>
       <MatchViewButton
+        disabled={match.completed}
         onLeftClick={increaseTeam2Score}
         onRightClick={decreaseTeam2Score}
       >
@@ -151,18 +153,21 @@ export const MatchView = ({ match }: MatchProps): FunctionComponent => {
               {match.maps.map((map, index) => {
                 return (
                   <Fragment key={`${match.id}-map-${index}`}>
-                    <input type="number" value={map.team1Rounds} className="max-w-15 pl-2" onChange={(e) => setMapRound(e, index, 'team1')} />
+                    <input type="number" disabled={match.completed} value={map.team1Rounds} className="max-w-15 pl-2" onChange={(e) => setMapRound(e, index, 'team1')} />
                     <span className="text-center">Map {index + 1}</span>
-                    <input type="number" value={map.team2Rounds} className="max-w-15 pl-2" onChange={(e) => setMapRound(e, index, 'team2')} />
+                    <input type="number" disabled={match.completed} value={map.team2Rounds} className="max-w-15 pl-2" onChange={(e) => setMapRound(e, index, 'team2')} />
                   </Fragment>
                 )
               })}
-              <button
-                className="col-span-3 border border-gray-700 rounded h-8 uppercase bold bg-slate-600 mt-3"
-                onClick={resetHandler}
-              >
-                Reset
-              </button>
+              {!match.completed &&
+                <button
+                  className="col-span-3 border border-gray-700 rounded h-8 uppercase bold bg-slate-600 mt-3"
+                  onClick={resetHandler}
+                >
+                  Reset
+                </button>
+              }
+              
             </div>
           )}
         <div
@@ -176,16 +181,12 @@ export const MatchView = ({ match }: MatchProps): FunctionComponent => {
   )
 }
 
-
-const matchViewButtonClasses = clsx(
-  'p-1 w-8',
-  'bg-transparent hover:bg-gray-700 rounded-md my-1'
-)
 type MatchViewButtonProps = React.HTMLAttributes<HTMLDivElement> & {
+  disabled?: boolean
   onLeftClick?: () => void
   onRightClick?: () => void
 }
-const MatchViewButton = ({ children, onLeftClick, onRightClick }: MatchViewButtonProps): FunctionComponent => {
+const MatchViewButton = ({ children, disabled, onLeftClick, onRightClick }: MatchViewButtonProps): FunctionComponent => {
   const contextMenuHandler = (e: React.MouseEvent) => {
     if (onRightClick) {
       e.preventDefault()
@@ -193,7 +194,11 @@ const MatchViewButton = ({ children, onLeftClick, onRightClick }: MatchViewButto
     }
   }
   return (
-    <button className={matchViewButtonClasses} onClick={onLeftClick} onContextMenu={contextMenuHandler}>
+    <button
+      className={clsx(`p-1 w-8 bg-transparent rounded-md my-1`, !disabled ? 'hover:bg-gray-700' : 'cursor-default')}
+      onClick={onLeftClick}
+      onContextMenu={contextMenuHandler}
+    >
       {children}
     </button>
   )

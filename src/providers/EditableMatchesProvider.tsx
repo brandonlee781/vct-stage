@@ -13,7 +13,7 @@ type EditableMatchesProviderProps = {
 export const EditableMatchesProvider = ({ children, league }: EditableMatchesProviderProps) => {
   const [editableMatches, dispatch] = useReducer(
     matchesReducer,
-    league.matches.filter(m => !m.completed)
+    league.matches
   )
   
   return (
@@ -34,7 +34,8 @@ function matchesReducer(matches: Match[], action: MatchesReducerAction) {
   switch(action.type) {
     case 'edit': {
       const index = matches.findIndex(m => m.id === action.id)
-      if (index >= 0 && action.data) {
+      if (matches[index].completed) return matches
+      if (index >= 0 && action.data ) {
         const newMatches = [
           ...matches.slice(0, index),
           {
@@ -49,6 +50,7 @@ function matchesReducer(matches: Match[], action: MatchesReducerAction) {
     }
     case 'reset': {
       const index = matches.findIndex(m => m.id === action.id)
+      if (matches[index].completed) return matches
       if (index >= 0) {
         const mat = matches[index]
         const newMatches = [

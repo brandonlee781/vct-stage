@@ -39,7 +39,7 @@ export const americasLeague: League = {
     { id: 14, stage: '1', week: 3, team1: Teams.NRG, team2: Teams.LEV, maps: [{ team1Rounds: 4, team2Rounds: 13 },{ team1Rounds: 4, team2Rounds: 13 },], completed: true },
     { id: 15, stage: '1', week: 3, team1: Teams.G2, team2: Teams.FUR, maps: [{ team1Rounds: 13, team2Rounds: 3 },{ team1Rounds: 13, team2Rounds: 3 },], completed: true },
     { id: 16, stage: '1', week: 3, team1: Teams.C9, team2: Teams['100T'], maps: [{ team1Rounds: 7, team2Rounds: 13 },{ team1Rounds: 6, team2Rounds: 13 },], completed: true },
-    // { id: 17, stage: '1', week: 3, team1: Teams.SEN, team2: Teams.EG, maps: [{ team1Rounds: 13, team2Rounds: 10 },{ team1Rounds: 11, team2Rounds: 13 },{ team1Rounds: 10, team2Rounds: 13 },], completed: true },
+    { id: 17, stage: '1', week: 3, team1: Teams.SEN, team2: Teams.EG, maps: [{ team1Rounds: 13, team2Rounds: 10 },{ team1Rounds: 11, team2Rounds: 13 },{ team1Rounds: 10, team2Rounds: 13 },], completed: true },
     { id: 18, stage: '1', week: 3, team1: Teams.NRG, team2: Teams.MIBR, maps: [{ team1Rounds: 13, team2Rounds: 9 },{ team1Rounds: 13, team2Rounds: 3 },], completed: true },
     { id: 19, stage: '1', week: 3, team1: Teams.G2, team2: Teams.LEV, maps: [{ team1Rounds: 6, team2Rounds: 13 },{ team1Rounds: 13, team2Rounds: 8 },{ team1Rounds: 9, team2Rounds: 13 },], completed: true },
     { id: 20, stage: '1', week: 3, team1: Teams.KRU, team2: Teams.LLL, maps: [{ team1Rounds: 13, team2Rounds: 8 },{ team1Rounds: 13, team2Rounds: 8 },], completed: true },

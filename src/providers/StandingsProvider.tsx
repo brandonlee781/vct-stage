@@ -2,7 +2,6 @@ import { calculateStanding } from '@/data/calculateStanding';
 import { sortTeams } from '@/data/sortTeams';
 import { League, Standing } from '@/types';
 import { useEditableMatches } from '@/hooks/useEditableMatches';
-import { unionBy } from 'lodash-es';
 
 const WINS_TO_QUALIFY = 2
 
@@ -34,58 +33,67 @@ export const StandingsProvider = ({ children, league }: StandingsProviderProps) 
     omega: { teams: [], qualificationSpots: 3 },
   })
 
-  useEffect(() => {
-    const allMatches = unionBy(matches, league.matches, (i) => i.id)
+  const original = useMemo(() => {
     const alpha = [...league.teams.alpha]
-      .map(({ name }) => calculateStanding(name, allMatches))
+      .map(({ name }) => calculateStanding(name, league.matches))
       .sort(sortTeams)
     const omega = [...league.teams.omega]
-      .map(({ name }) => calculateStanding(name, allMatches))
+      .map(({ name }) => calculateStanding(name, league.matches))
       .sort(sortTeams)
-    
-    setStandings((prevStand) => {
-      const newAlpha = alpha.map((a, i) => {
-        const oldStanding = prevStand.alpha.teams.findIndex(p => p.name === a.name)
+
+    return {
+      alpha,
+      omega,
+    }
+  }, [league])
+
+  useEffect(() => {
+    const alpha = [...league.teams.alpha]
+      .map(({ name }) => calculateStanding(name, matches))
+      .sort(sortTeams)
+      .map((a, i) => {
+        const oldStanding = original.alpha.findIndex(p => p.name === a.name)
         return {
           ...a,
           sortDiff: oldStanding - i,
         }
       })
-      const newOmega = omega.map((o, i) => {
-        const oldStanding = prevStand.omega.teams.findIndex(p => p.name === o.name)
+    const omega = [...league.teams.omega]
+      .map(({ name }) => calculateStanding(name, matches))
+      .sort(sortTeams)
+      .map((o, i) => {
+        const oldStanding = original.omega.findIndex(p => p.name === o.name)
         return {
           ...o,
           sortDiff: oldStanding - i,
         }
       })
+    const alphaQualedTeams = alpha.filter(t => t.wins >= WINS_TO_QUALIFY).length
+    const omegaQualedTeams = omega.filter(t => t.wins >= WINS_TO_QUALIFY).length
+    let alphaSpots = 3
+    let omegaSpots = 3
 
-      const alphaQualedTeams = newAlpha.filter(t => t.wins >= WINS_TO_QUALIFY).length
-      const omegaQualedTeams = newOmega.filter(t => t.wins >= WINS_TO_QUALIFY).length
-      let alphaSpots = 3
-      let omegaSpots = 3
-
-      if (alphaQualedTeams < 3) {
-        alphaSpots = alphaQualedTeams
-        omegaSpots += 3 - alphaQualedTeams
-        
-      }
-      if (omegaQualedTeams < 3) {
-        omegaSpots = omegaQualedTeams
-        alphaSpots += 3 - omegaQualedTeams
-      }
-
-      return {
-        alpha: {
-          teams: newAlpha,
-          qualificationSpots: alphaSpots,
-        },
-        omega: {
-          teams: newOmega,
-          qualificationSpots: omegaSpots,
-        }
+    if (alphaQualedTeams < 3) {
+      alphaSpots = alphaQualedTeams
+      omegaSpots += 3 - alphaQualedTeams
+      
+    }
+    if (omegaQualedTeams < 3) {
+      omegaSpots = omegaQualedTeams
+      alphaSpots += 3 - omegaQualedTeams
+    }
+    
+    setStandings({
+      alpha: {
+        teams: alpha,
+        qualificationSpots: alphaSpots,
+      },
+      omega: {
+        teams: omega,
+        qualificationSpots: omegaSpots,
       }
     })
-  }, [league, matches])
+  }, [league, matches, original])
   return (
     <StandingsContext.Provider value={standings}>
       {children}

@@ -31,20 +31,43 @@ export const MatchList = ({ splitByGroup }: MatchListProps): FunctionComponent =
     }
   }, [searchParams, dispatch])
 
-
+  const completed = groupBy(matches.filter(m => m.completed), i => i.week)
+  const upcoming = groupBy(matches.filter(m => !m.completed), i => i.week)
   const matchWeeks = groupBy(matches, i => i.week)
 
   if (splitByGroup) {
-    const grouped: { [key: string]: { alpha: Match[]; omega: Match[] } } = {}
+    const groupedUpcoming: { [key: string]: { alpha: Match[]; omega: Match[] } } = {}
+    const groupedCompleted: { [key: string]: { alpha: Match[]; omega: Match[] } } = {}
     Object.keys(matchWeeks).forEach(week => {
-      grouped[week] = {
-        alpha: matchWeeks[week].filter(m => m.group === 'alpha'),
-        omega: matchWeeks[week].filter(m => m.group === 'omega')
+      groupedUpcoming[week] = {
+        alpha: matchWeeks[week].filter(m => !m.completed && m.group === 'alpha'),
+        omega: matchWeeks[week].filter(m => !m.completed && m.group === 'omega')
+      }
+
+      groupedCompleted[week] = {
+        alpha: matchWeeks[week].filter(m => m.completed && m.group === 'alpha'),
+        omega: matchWeeks[week].filter(m => m.completed && m.group === 'omega')
       }
     })
     return (
       <>
-      {Object.entries(grouped)?.map(([week, weekMatches])=> {
+      {Object.entries(groupedUpcoming)?.map(([week, weekMatches])=> {
+        return (
+          <Fragment key={`week-${week}`}>
+            <span className="col-span-2" >Week {week}</span>
+            <div className="flex flex-col gap-y-2">
+              {weekMatches.alpha.map(m => <MatchView match={m} key={m.id}/>)}
+            </div>
+            <div className="flex flex-col gap-y-2">
+              {weekMatches.omega.map(m => <MatchView match={m} key={m.id}/>)}
+            </div>
+          </Fragment>
+        )
+      })}
+      <div className="border-t border-b w-full border-gray-700 col-span-2 mt-2 py-2 text-center">
+        Completed
+      </div>
+      {Object.entries(groupedCompleted)?.map(([week, weekMatches])=> {
         return (
           <Fragment key={`week-${week}`}>
             <span className="col-span-2" >Week {week}</span>
@@ -62,10 +85,21 @@ export const MatchList = ({ splitByGroup }: MatchListProps): FunctionComponent =
   }
   return (
     <>
-      {Object.entries(matchWeeks)?.map(([week, weekMatches])=> {
+      {Object.entries(upcoming)?.map(([week, weekMatches])=> {
         return (
           <Fragment key={`week-${week}`}>
-            <span className="col-span-2" >Week {week}</span>
+            <span className="col-span-2 pl-2" >Week {week}</span>
+            {weekMatches.map(m => <MatchView match={m} key={m.id}/>)}
+          </Fragment>
+        )
+      })}
+      <div className="border-t border-b w-full border-gray-700 col-span-2 mt-2 py-2 text-center">
+        Completed
+      </div>
+      {Object.entries(completed)?.map(([week, weekMatches])=> {
+        return (
+          <Fragment key={`week-${week}`}>
+            <span className="col-span-2 pl-2" >Week {week}</span>
             {weekMatches.map(m => <MatchView match={m} key={m.id}/>)}
           </Fragment>
         )
