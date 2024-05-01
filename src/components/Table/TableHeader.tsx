@@ -9,7 +9,9 @@ export const TableHeader = forwardRef<HTMLTableCellElement, TableHeaderProps>(
       <th
         ref={ref}
         scope="col"
-        className={clsx('text-left text-xs font-medium uppercase tracking-wider lg:text-center')}
+        className={clsx(
+          'text-left text-xs font-medium uppercase tracking-wider lg:text-center'
+        )}
         colSpan={span}
       >
         {children}

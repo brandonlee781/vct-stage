@@ -1,30 +1,58 @@
-import { Teams } from '../teams';
-import { LEAGUES, League } from '../../types';
+import { Teams } from '../teams'
+import { LEAGUES, type League } from '../../types'
 
 export const americasLeague: League = {
   name: LEAGUES.americas,
   teams: {
     alpha: [
-      { name: Teams.C9, wins: 4, losses: 1, mapWins: 8, mapLosses: 1, roundDiff: 14 },
-      { name: Teams.G2, wins: 3, losses: 2, mapWins: 7, mapLosses: 4, roundDiff: 34 },
-      { name: Teams.KRU, wins: 5, losses: 0, mapWins: 10, mapLosses: 2, roundDiff: 53 },
-      { name: Teams.NRG, wins: 3, losses: 2, mapWins: 7, mapLosses: 4, roundDiff: 19 },
-      { name: Teams.SEN, wins: 2, losses: 3, mapWins: 5, mapLosses: 6, roundDiff: 9 },
+      { name: Teams.C9 },
+      { name: Teams.G2 },
+      { name: Teams.KRU },
+      { name: Teams.NRG },
+      { name: Teams.SEN },
     ],
     omega: [
-      { name: Teams['100T'], wins: 2, losses: 2, mapWins: 5, mapLosses: 4, roundDiff: 3 },
-      { name: Teams.EG, wins: 2, losses: 3, mapWins: 5, mapLosses: 8, roundDiff: -28 },
-      { name: Teams.FUR, wins: 0, losses: 4, mapWins: 0, mapLosses: 8, roundDiff: -50 },
-      { name: Teams.LEV, wins: 3, losses: 1, mapWins: 7, mapLosses: 3, roundDiff: 26 },
-      { name: Teams.LLL, wins: 1, losses: 3, mapWins: 3, mapLosses: 6, roundDiff: -24 },
-      { name: Teams.MIBR, wins: 0, losses: 4, mapWins: 0, mapLosses: 8, roundDiff: -56 },
+      { name: Teams['100T'] },
+      { name: Teams.EG },
+      { name: Teams.FUR },
+      { name: Teams.LEV },
+      { name: Teams.LLL },
+      { name: Teams.MIBR },
     ],
   },
   matches: [
-    { id: 26, week: 5, team1: Teams.SEN, team2: Teams.FUR, maps: [] },
-    { id: 27, week: 5, team1: Teams.NRG, team2: Teams['100T'], maps: [] },
-    { id: 28, week: 5, team1: Teams.KRU, team2: Teams.LEV, maps: [] },
-    { id: 29, week: 5, team1: Teams.C9, team2: Teams.MIBR, maps: [] },
-    { id: 30, week: 5, team1: Teams.G2, team2: Teams.LLL, maps: [] },
-  ]
+    /* eslint-disable prettier/prettier */
+    {id: 1, team1: Teams.C9, team2: Teams.LEV, maps: [ {team1Rounds: 7, team2Rounds: 13}, {team1Rounds: 13, team2Rounds: 7}, {team1Rounds: 18, team2Rounds: 16}, ], completed: true, stage: '1', week: 1, group: 'cross', },
+    {id: 2, team1: Teams.NRG, team2: Teams.LLL, maps: [ {team1Rounds: 13, team2Rounds: 10}, {team1Rounds: 13, team2Rounds: 2}, ], completed: true, stage: '1', week: 1, group: 'cross', },
+    {id: 3, team1: Teams.G2, team2: Teams.EG, maps: [ {team1Rounds: 13, team2Rounds: 8}, {team1Rounds: 13, team2Rounds: 3}, ], completed: true, stage: '1', week: 1, group: 'cross', },
+    {id: 4, team1: Teams.SEN, team2: Teams[ '100T' ], maps: [ {team1Rounds: 13, team2Rounds: 10}, {team1Rounds: 13, team2Rounds: 6}, ], completed: true, stage: '1', week: 1, group: 'cross', },
+    {id: 5, team1: Teams.KRU, team2: Teams.FUR, maps: [ {team1Rounds: 13, team2Rounds: 7}, {team1Rounds: 11, team2Rounds: 13}, {team1Rounds: 13, team2Rounds: 7}, ], completed: true, stage: '1', week: 1, group: 'cross', },
+    {id: 6, team1: Teams.G2, team2: Teams[ '100T' ], maps: [ {team1Rounds: 9, team2Rounds: 13}, {team1Rounds: 8, team2Rounds: 13}, ], completed: true, stage: '1', week: 2, group: 'cross', },
+    {id: 7, team1: Teams.SEN, team2: Teams.LEV, maps: [ {team1Rounds: 17, team2Rounds: 19}, {team1Rounds: 11, team2Rounds: 13}, ], completed: true, stage: '1', week: 2, group: 'cross', },
+    {id: 8, team1: Teams.NRG, team2: Teams.FUR, maps: [ {team1Rounds: 13, team2Rounds: 2}, {team1Rounds: 13, team2Rounds: 8}, ], completed: true, stage: '1', week: 2, group: 'cross', },
+    {id: 9, team1: Teams.KRU, team2: Teams.MIBR, maps: [ {team1Rounds: 13, team2Rounds: 6}, {team1Rounds: 13, team2Rounds: 8}, ], completed: true, stage: '1', week: 2, group: 'cross', },
+    {id: 10, team1: Teams.C9, team2: Teams.EG, maps: [ {team1Rounds: 9, team2Rounds: 13}, {team1Rounds: 13, team2Rounds: 8}, {team1Rounds: 13, team2Rounds: 4}, ], completed: true, stage: '1', week: 2, group: 'cross', },
+    {id: 11, team1: Teams.SEN, team2: Teams.MIBR, maps: [ {team1Rounds: 13, team2Rounds: 3}, {team1Rounds: 13, team2Rounds: 7}, ], completed: true, stage: '1', week: 3, group: 'cross', },
+    {id: 12, team1: Teams.C9, team2: Teams.LLL, maps: [ {team1Rounds: 11, team2Rounds: 13}, {team1Rounds: 13, team2Rounds: 4}, {team1Rounds: 13, team2Rounds: 9}, ], completed: true, stage: '1', week: 3, group: 'cross', },
+    {id: 13, team1: Teams.KRU, team2: Teams.EG, maps: [ {team1Rounds: 13, team2Rounds: 5}, {team1Rounds: 13, team2Rounds: 9} ], completed: true, stage: '1', week: 3, group: 'cross', },
+    {id: 14, team1: Teams.NRG, team2: Teams.LEV, maps: [ {team1Rounds: 4, team2Rounds: 13}, {team1Rounds: 4, team2Rounds: 13}, ], completed: true, stage: '1', week: 3, group: 'cross', },
+    {id: 15, team1: Teams.G2, team2: Teams.FUR, maps: [ {team1Rounds: 13, team2Rounds: 3}, {team1Rounds: 13, team2Rounds: 3}, ], completed: true, stage: '1', week: 3, group: 'cross', },
+    {id: 16, team1: Teams.C9, team2: Teams[ '100T' ], maps: [ {team1Rounds: 7, team2Rounds: 13}, {team1Rounds: 6, team2Rounds: 13}, ], completed: true, stage: '1', week: 3, group: 'cross', },
+    {id: 17, team1: Teams.SEN, team2: Teams.EG, maps: [ {team1Rounds: 13, team2Rounds: 10}, {team1Rounds: 11, team2Rounds: 13}, {team1Rounds: 10, team2Rounds: 13}, ], completed: true, stage: '1', week: 3, group: 'cross', },
+    {id: 18, team1: Teams.NRG, team2: Teams.MIBR, maps: [ {team1Rounds: 13, team2Rounds: 9}, {team1Rounds: 13, team2Rounds: 3}, ], completed: true, stage: '1', week: 3, group: 'cross', },
+    {id: 19, team1: Teams.G2, team2: Teams.LEV, maps: [ {team1Rounds: 6, team2Rounds: 13}, {team1Rounds: 13, team2Rounds: 8}, {team1Rounds: 9, team2Rounds: 13}, ], completed: true, stage: '1', week: 3, group: 'cross', },
+    {id: 20, team1: Teams.KRU, team2: Teams.LLL, maps: [ {team1Rounds: 13, team2Rounds: 8}, {team1Rounds: 13, team2Rounds: 8}, ], completed: true, stage: '1', week: 3, group: 'cross', },
+    {id: 21, team1: Teams.G2, team2: Teams.MIBR, maps: [ {team1Rounds: 13, team2Rounds: 9}, {team1Rounds: 13, team2Rounds: 3}, ], completed: true, stage: '1', week: 4, group: 'cross', },
+    {id: 22, team1: Teams.SEN, team2: Teams.LLL, maps: [ {team1Rounds: 7, team2Rounds: 13}, {team1Rounds: 8, team2Rounds: 13}, ], completed: true, stage: '1', week: 4, group: 'cross', },
+    {id: 23, team1: Teams.C9, team2: Teams.FUR, maps: [ {team1Rounds: 2, team2Rounds: 13}, {team1Rounds: 13, team2Rounds: 3}, {team1Rounds: 13, team2Rounds: 8}, ], completed: true, stage: '1', week: 4, group: 'cross', },
+    {id: 24, team1: Teams.NRG, team2: Teams.EG, maps: [ {team1Rounds: 6, team2Rounds: 13}, {team1Rounds: 16, team2Rounds: 14}, {team1Rounds: 11, team2Rounds: 13}, ], completed: true, stage: '1', week: 4, group: 'cross', },
+    {id: 25, team1: Teams.KRU, team2: Teams[ '100T' ], maps: [ {team1Rounds: 13, team2Rounds: 7}, {team1Rounds: 11, team2Rounds: 13}, {team1Rounds: 13, team2Rounds: 8}, ], completed: true, stage: '1', week: 4, group: 'cross', },
+
+    {id: 26, stage: '1', week: 5, group: 'cross', team1: Teams.SEN, team2: Teams.FUR, maps: [], completed: false},
+    {id: 27, stage: '1', week: 5, group: 'cross', team1: Teams.NRG, team2: Teams[ '100T' ], maps: [], completed: false},
+    {id: 28, stage: '1', week: 5, group: 'cross', team1: Teams.KRU, team2: Teams.LEV, maps: [], completed: false},
+    {id: 29, stage: '1', week: 5, group: 'cross', team1: Teams.C9, team2: Teams.MIBR, maps: [], completed: false},
+    {id: 30, stage: '1', week: 5, group: 'cross', team1: Teams.G2, team2: Teams.LLL, maps: [], completed: false},
+    /* eslint-enable prettier/prettier */
+  ],
 }

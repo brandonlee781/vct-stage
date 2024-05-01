@@ -26,7 +26,7 @@ export enum Teams {
   /** Bilibili Gaming */
   BBG = 'Bilibili Gaming',
   /** Dragon Ranger Gaming */
-  DRG = 'Dragon Ranger Gaming',
+  DRG = 'Dragon Ranger',
   /** EDward Gaming */
   EDG = 'EDward Gaming',
   /** Nova Esports */
@@ -47,7 +47,7 @@ export enum Teams {
   TY = 'TYLOO',
   // EMEA
   /** BBL Esports */
-  BBL = "BBL Esports",
+  BBL = 'BBL Esports',
   /** FNATIC */
   FNC = 'FNATIC',
   /** Karmine Corp */

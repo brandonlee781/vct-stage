@@ -13,15 +13,13 @@ declare module '@tanstack/react-router' {
   }
 }
 
-const rootElement = document.getElementById('app')!
+const rootElement = document.querySelector('#app')!
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement)
-  
+
   root.render(
     <React.StrictMode>
       <App router={router} />
-    </React.StrictMode>,
+    </React.StrictMode>
   )
-
 }
-
