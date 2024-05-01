@@ -56,18 +56,31 @@ export const MatchList = ({
     )
   }
 
-  const upcomingMatchSections = entries(
-    groupBy(
-      matches.filter(m => !m.completed && m.stage === stageFilter),
-      match => match.week
+  const filterMatchSections = (completed: boolean): React.ReactNode[] => {
+    return entries(
+      groupBy(
+        matches.filter(m => m.stage === stageFilter),
+        match => match.week
+      )
     )
-  ).map(createMatchSection)
-  const completedMatchSections = entries(
-    groupBy(
-      matches.filter(m => m.completed && m.stage === stageFilter),
-      match => match.week
-    )
-  ).map(createMatchSection)
+      .map(([week, weekMatches]) => {
+        if (completed && weekMatches.every(m => m.completed)) {
+          // if filtering on completed matches
+          // only return weeks that are all completed
+          return [week, weekMatches] as [string, Match[]]
+        } else if (!completed && weekMatches.some(m => !m.completed)) {
+          // if filtering on upcoming matches
+          // return weeks with any uncompleted matches
+          return [week, weekMatches] as [string, Match[]]
+        }
+        return null
+      })
+      .filter(Boolean)
+      .map(createMatchSection)
+  }
+
+  const upcomingMatchSections = filterMatchSections(false)
+  const completedMatchSections = filterMatchSections(true)
 
   return (
     <div className="col-span-2 flex flex-col sm:grid sm:grid-cols-2 gap-2">

@@ -25,14 +25,14 @@ interface TableComponent
 export const Table = forwardRef<HTMLTableElement, TableProps>(
   ({ headers, headerEls, children, className }, ref) => {
     return (
-      <div className={clsx('flex flex-col h-full', className)}>
-        <div className="h-full overflow-x-auto rounded-lg bg-transparent">
-          <div className="inline-block min-w-full h-full align-middle">
-            <div className="overflow-hidden h-full">
+      <div className={clsx('flex flex-col', className)}>
+        <div className="overflow-x-auto rounded-lg bg-transparent">
+          <div className="inline-block min-w-full align-middle">
+            <div className="overflow-hidden ">
               <table
                 ref={ref}
                 className={clsx(
-                  'min-w-full h-full divide-y-4 divide-x table-fixed divide-vctDark-800'
+                  'min-w-full divide-y-4 divide-x table-fixed divide-vctDark-800'
                 )}
               >
                 <thead className="bg-vctMid-500">
@@ -43,7 +43,7 @@ export const Table = forwardRef<HTMLTableElement, TableProps>(
                         <th
                           scope="col"
                           className={clsx(
-                            'p-3 text-left text-xs font-medium uppercase tracking-wider text-center h-8'
+                            'p-3 text-xs font-medium uppercase tracking-wider text-center h-8'
                           )}
                           key={index}
                           colSpan={header.span}

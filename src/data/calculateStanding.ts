@@ -21,6 +21,7 @@ export const calculateStanding = (
       let localMapWins = 0
       let localMapLosses = 0
 
+      if (!match.completed) continue
       for (const map of match.maps) {
         if (map[mapRoundKey] > map[mapOppKey]) {
           // this is a map win
