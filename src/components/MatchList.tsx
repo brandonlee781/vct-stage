@@ -1,5 +1,5 @@
 import { FunctionComponent } from '@/lib/types'
-import { useEditableMatches, useEditableMatchesDispatch } from '../providers/EditableMatchesProvider'
+import { useEditableMatches, useEditableMatchesDispatch } from '@/hooks/useEditableMatches'
 import { convertShareableCode } from '@/lib/shareableCode'
 import { MatchView } from './MatchView'
 import { groupBy } from 'lodash-es'

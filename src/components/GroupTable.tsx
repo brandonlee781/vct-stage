@@ -1,16 +1,16 @@
 import { FunctionComponent } from '@/lib/types';
 import { Header, Table } from '@/components/Table';
 import { TeamRow } from './TeamRow';
-import { useTeams } from '@/providers/EditableMatchesProvider';
+import { useStandings } from '@/providers/StandingsProvider';
 
 type GroupTableProps = {
   name: 'Alpha' | 'Omega'
 }
 
 export const GroupTable = (props: GroupTableProps): FunctionComponent => {
-  const groups = useTeams()
+  const standings = useStandings()
 
-  const group = props.name === 'Alpha' ? groups.alpha : groups.omega
+  const group = props.name === 'Alpha' ? standings.alpha : standings.omega
 
   const headers: Header[] = [
     { text: props.name },

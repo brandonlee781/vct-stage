@@ -1,24 +1,8 @@
 import { Dispatch } from 'react'
-import { League, Match, Team } from '../types'
-import { combinedData } from '@/lib/combinedData'
-
-type CombinedTeam = Team & { sortDiff: number }
-type CombinedTeamsContextData = {
-  alpha: {
-    teams: CombinedTeam[]
-    qualificationSpots: number;
-  },
-  omega: {
-    teams: CombinedTeam[],
-    qualificationSpots: number;
-  }
-}
+import { League, Match } from '../types'
 
 export const EditableMatchesContext = createContext<Match[]>([])
-export const CombinedTeamsContext = createContext<CombinedTeamsContextData>({
-  alpha: { teams: [], qualificationSpots: 3 },
-  omega: { teams: [], qualificationSpots: 3 },
-})
+
 export const EditableMatchesDispatchContext = createContext<Dispatch<MatchesReducerAction>>(() => ({}))
 
 type EditableMatchesProviderProps = {
@@ -26,48 +10,16 @@ type EditableMatchesProviderProps = {
   league: League
 }
 
-const WINS_TO_QUALIFY = 2
-
 export const EditableMatchesProvider = ({ children, league }: EditableMatchesProviderProps) => {
   const [editableMatches, dispatch] = useReducer(
     matchesReducer,
-    league.matches || []
+    league.matches.filter(m => !m.completed)
   )
-
-  const teams = useMemo((): CombinedTeamsContextData => {
-    const alphaTeams = combinedData(league.teams.alpha, editableMatches)
-    const omegaTeams = combinedData(league.teams.omega, editableMatches)
-
-    const alphaQualedTeams = alphaTeams.filter(t => t.wins >= WINS_TO_QUALIFY).length
-    const omegaQualedTeams = omegaTeams.filter(t => t.wins >= WINS_TO_QUALIFY).length
-
-    let alphaSpots = 3
-    let omegaSpots = 3
-
-    if (alphaQualedTeams < 3) {
-      alphaSpots = alphaQualedTeams
-      omegaSpots += 3 - alphaQualedTeams
-      
-    }
-    if (omegaQualedTeams < 3) {
-      omegaSpots = omegaQualedTeams
-      alphaSpots += 3 - omegaQualedTeams
-    }
-
-    return {
-      alpha: { teams: alphaTeams, qualificationSpots: alphaSpots },
-      omega: { teams: omegaTeams, qualificationSpots: omegaSpots },
-    }
-  }, [league, editableMatches])
-
   
   return (
     <EditableMatchesContext.Provider value={editableMatches}>
       <EditableMatchesDispatchContext.Provider value={dispatch}>
-      <CombinedTeamsContext.Provider value={teams}>
-
-        {children}
-      </CombinedTeamsContext.Provider>
+          {children}
       </EditableMatchesDispatchContext.Provider>
     </EditableMatchesContext.Provider>
   )
@@ -102,10 +54,7 @@ function matchesReducer(matches: Match[], action: MatchesReducerAction) {
         const newMatches = [
           ...matches.slice(0, index),
           {
-            id: mat.id,
-            week: mat.week,
-            team1: mat.team1,
-            team2: mat.team2,
+            ...mat,
             maps: []
           },
           ...matches.slice(index + 1),
@@ -118,14 +67,4 @@ function matchesReducer(matches: Match[], action: MatchesReducerAction) {
       throw new Error(`Unknown Action: ${action.type}`);
     }
   }
-}
-
-export const useEditableMatches = () => {
-  return useContext(EditableMatchesContext)
-}
-export const useEditableMatchesDispatch = () => {
-  return useContext(EditableMatchesDispatchContext)
-}
-export const useTeams = () => {
-  return useContext(CombinedTeamsContext)
 }

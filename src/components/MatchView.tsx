@@ -1,6 +1,6 @@
 import { FunctionComponent } from '@/lib/types';
 import { Match } from '../types';
-import { useEditableMatchesDispatch } from '../providers/EditableMatchesProvider';
+import { useEditableMatchesDispatch } from '@/hooks/useEditableMatches';
 import React from 'react';
 type MatchProps = {
   match: Match

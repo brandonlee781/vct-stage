@@ -1,3 +1,4 @@
+import { sortTeams } from '@/data/sortTeams'
 import { Match, Team } from '../types'
 
 export const combinedData = (group: Team[], matches: Match[]) => {
@@ -102,18 +103,4 @@ const getTeamCombined = (team: Team, matches: Match[]) => {
   return combinedTeam
 }
 
-const sortTeams = (a: Team, b: Team) => {
-  if (a.wins === b.wins) {
-    if (a.losses === b.losses) {
-      if (a.mapWins === b.mapWins) {
-        if (a.mapLosses === b.mapLosses) {
-          return (b.roundDiff || 0) - (a.roundDiff|| 0)
-        }
-        return a.mapLosses - b.mapLosses
-      }
-      return b.mapWins - a.mapWins
-    }
-    return a.losses - b.losses
-  }
-  return b.wins - a.wins
-}
+

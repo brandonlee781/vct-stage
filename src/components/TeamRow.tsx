@@ -1,13 +1,14 @@
 import { FunctionComponent } from '@/lib/types';
-import { Team } from '../types';
+import { Standing } from '../types';
 import { Table } from '@/components/Table';
 
 type TeamRowProps = {
-  team: Team & { sortDiff: number }
+  team: Standing & { sortDiff: number }
   index: number,
   playoffSpots: number
 }
 export const TeamRow = ({ team, index, playoffSpots }: TeamRowProps): FunctionComponent => {
+  const roundDiff = team.roundWins - team.roundLosses
   return (
     <Table.TableRow>
       <td>
@@ -28,8 +29,8 @@ export const TeamRow = ({ team, index, playoffSpots }: TeamRowProps): FunctionCo
       </td>
       <td className={'text-center px-2'}>{team.wins}/{team.losses}</td>
       <td className={'text-center px-2'}>{team.mapWins}/{team.mapLosses}</td>
-      <td className={clsx('text-center px-2', team.roundDiff && team.roundDiff > 0 ? 'text-green-500' : 'text-red-500')}>
-        {team.roundDiff?.toString()}
+      <td className={clsx('text-center px-2', roundDiff > 0 ? 'text-green-500' : 'text-red-500')}>
+        {roundDiff?.toString()}
       </td>
     </Table.TableRow>
   )

@@ -1,6 +1,6 @@
 import { getShareableCode } from '@/lib/shareableCode';
 import { FunctionComponent } from '@/lib/types';
-import { useEditableMatches } from '@/providers/EditableMatchesProvider';
+import { useEditableMatches } from '@/hooks/useEditableMatches';
 import { LEAGUES } from '@/types';
 import { Link, getRouteApi } from '@tanstack/react-router';
 const route = getRouteApi('/league/$leagueId')
