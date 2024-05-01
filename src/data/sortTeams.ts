@@ -8,8 +8,8 @@ export const sortTeams = (a: Standing, b: Standing): number => {
     const bMapDiff = b.mapWins - b.mapLosses
     if (aMapDiff === bMapDiff) {
       const aRndDiff = a.roundWins - a.roundLosses
-      const bRndDiff = b.roundWins - a.roundLosses
-      return aRndDiff - bRndDiff
+      const bRndDiff = b.roundWins - b.roundLosses
+      return bRndDiff - aRndDiff
     }
     return bMapDiff - aMapDiff
   }
