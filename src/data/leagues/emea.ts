@@ -51,7 +51,9 @@ export const emeaLeague: League = {
     { id: '24', stage: '1', week: 4, team1: Teams.KC, team2: Teams.KOI, maps: [{ team1Rounds: 13, team2Rounds: 7 },{ team1Rounds: 7, team2Rounds: 13 },{ team1Rounds: 15, team2Rounds: 13 },], completed: true },
 
     { id: '25', stage: '1', week: 5, team1: Teams.BBL, team2: Teams.GX, maps: [{ team1Rounds: 6, team2Rounds: 13 },{ team1Rounds: 11, team2Rounds: 13 },], completed: true },
-    { id: '26', stage: '1', week: 5, team1: Teams.KC, team2: Teams.TH, maps: [], completed: false },
+    // { id: '25', stage: '1', week: 5, team1: Teams.BBL, team2: Teams.GX, maps: [], completed: false },
+    { id: '26', stage: '1', week: 5, team1: Teams.KC, team2: Teams.TH, maps: [{ team1Rounds: 12, team2Rounds: 14 },{ team1Rounds: 13, team2Rounds: 5 },{ team1Rounds: 9, team2Rounds: 13 }], completed: true },
+    // { id: '26', stage: '1', week: 5, team1: Teams.KC, team2: Teams.TH, maps: [], completed: false },
     { id: '27', stage: '1', week: 5, team1: Teams.VIT, team2: Teams.KOI, maps: [], completed: false },
     { id: '28', stage: '1', week: 5, team1: Teams.NAVI, team2: Teams.FNC, maps: [], completed: false },
     { id: '29', stage: '1', week: 5, team1: Teams.TL, team2: Teams.GM8, maps: [], completed: false },

@@ -1,19 +1,17 @@
 import type { Standing } from '@/types'
 
 export const sortTeams = (a: Standing, b: Standing): number => {
-  if (a.wins === b.wins) {
-    if (a.losses === b.losses) {
-      if (a.mapWins === b.mapWins) {
-        if (a.mapLosses === b.mapLosses) {
-          const aDiff = a.roundWins - a.roundLosses
-          const bDiff = b.roundWins - a.roundLosses
-          return bDiff - aDiff
-        }
-        return a.mapLosses - b.mapLosses
-      }
-      return b.mapWins - a.mapWins
+  const aDiff = a.wins - a.losses
+  const bDiff = b.wins - b.losses
+  if (aDiff === bDiff) {
+    const aMapDiff = a.mapWins - a.mapLosses
+    const bMapDiff = b.mapWins - b.mapLosses
+    if (aMapDiff === bMapDiff) {
+      const aRndDiff = a.roundWins - a.roundLosses
+      const bRndDiff = b.roundWins - a.roundLosses
+      return aRndDiff - bRndDiff
     }
-    return a.losses - b.losses
+    return bMapDiff - aMapDiff
   }
-  return b.wins - a.wins
+  return bDiff - aDiff
 }
