@@ -33,13 +33,14 @@ export const calculateStanding = (
         roundLosses += map[mapOppKey]
       }
 
-      if (match.maps.length >= 2 && localMapWins > localMapLosses) {
-        wins += 1
-      } else if (match.maps.length >= 2 && localMapWins < localMapLosses) {
-        losses += 1
-      }
       mapWins += localMapWins
       mapLosses += localMapLosses
+      if (match.maps.length < 2) continue
+      if (localMapWins > localMapLosses) {
+        wins += 1
+      } else if (localMapWins < localMapLosses) {
+        losses += 1
+      }
     }
   }
 
