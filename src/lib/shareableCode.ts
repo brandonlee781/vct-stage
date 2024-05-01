@@ -7,7 +7,7 @@ import type { Match } from '@/types'
 
 export const getShareableCode = (matches: Match[]): string => {
   const data = []
-  for (const match of matches) {
+  for (const match of matches.filter(m => !m.completed)) {
     if (match.maps.length > 0) {
       const mData = [
         match.id.toString().padStart(2, '0'),

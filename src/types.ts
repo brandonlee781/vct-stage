@@ -22,7 +22,7 @@ export type Standing = Team & {
 }
 
 export type Match = {
-  id: number | string
+  id: number
   group?: 'alpha' | 'omega' | 'cross'
   stage: '1' | '2'
   week: number
