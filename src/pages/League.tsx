@@ -16,7 +16,7 @@ const LeaguePage = (): FunctionComponent => {
     <EditableMatchesProvider league={league} key={league.name}>
       <LeagueToolbar />
       <div className="flex flex-nowrap w-screen justify-center p-4">
-        <div className="grid grid-rows-[fit-content,1fr] grid-cols-2 gap-4">
+        <div className="flex flex-col lg:grid lg:grid-rows-[fit-content,1fr] lg:grid-cols-2 gap-4">
           <GroupTable name="Alpha" />
           <GroupTable name="Omega" />
           <MatchList />
