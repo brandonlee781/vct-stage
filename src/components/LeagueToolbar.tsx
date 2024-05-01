@@ -56,7 +56,7 @@ export const LeagueToolbar = (): FunctionComponent => {
         onClick={shareHandler}
       >
         <IconMdiShare className="mr-1" />
-        Share
+        <span className="hidden md:inline">Share</span>
       </button>
     </div>
   )
