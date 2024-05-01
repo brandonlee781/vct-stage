@@ -43,7 +43,7 @@ export const Table = forwardRef<HTMLTableElement, TableProps>(
                         <th
                           scope="col"
                           className={clsx(
-                            'p-3 text-left text-xs font-medium uppercase tracking-wider lg:text-center h-8'
+                            'p-3 text-left text-xs font-medium uppercase tracking-wider text-center h-8'
                           )}
                           key={index}
                           colSpan={header.span}

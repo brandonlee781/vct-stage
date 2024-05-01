@@ -20,7 +20,7 @@ export const GroupTable = (props: GroupTableProps): FunctionComponent => {
   ]
 
   return (
-    <Table headers={headers} className="min-w-[350px]">
+    <Table headers={headers}>
       {group.teams.map((team, index) => (
         <TeamRow
           team={team}

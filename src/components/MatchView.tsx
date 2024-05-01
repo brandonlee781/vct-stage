@@ -1,12 +1,12 @@
 import type { FunctionComponent } from '@/lib/types'
 import type { Match } from '../types'
 import { useEditableMatchesDispatch } from '@/hooks/useEditableMatches'
-type MatchProps = {
+type MatchProps = React.HTMLAttributes<HTMLTableCellElement> & {
   match: Match
 }
 
 const matchWrapperClass = clsx(
-  'w-full max-w-[350px]',
+  'w-full',
   'grid grid-cols-[1fr,32px,32px,1fr] gap-1 items-center self-start',
   'bg-vctMid-500',
   'rounded'
@@ -18,7 +18,10 @@ const showRoundsButtonClass = clsx(
   'flex items-center justify-center'
 )
 
-export const MatchView = ({ match }: MatchProps): FunctionComponent => {
+export const MatchView = ({
+  match,
+  className,
+}: MatchProps): FunctionComponent => {
   const dispatch = useEditableMatchesDispatch()
   const [showRounds, setShowRounds] = useState(false)
   const team1Score = match.maps.filter(
@@ -138,7 +141,7 @@ export const MatchView = ({ match }: MatchProps): FunctionComponent => {
   }
 
   return (
-    <div className={matchWrapperClass}>
+    <div className={`${matchWrapperClass} ${className}`}>
       <div className="px-2 text-white text-sm">{match.team1}</div>
       <MatchViewButton
         disabled={match.completed}

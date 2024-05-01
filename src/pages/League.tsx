@@ -17,12 +17,10 @@ const LeaguePage = (): FunctionComponent => {
     <EditableMatchesProvider league={league} key={league.name}>
       <StandingsProvider league={league}>
         <LeagueToolbar />
-        <div className="flex flex-nowrap w-full justify-center p-4">
-          <div className="grid grid-rows-[fit-content,1fr] grid-cols-2 gap-4">
-            <GroupTable name="Alpha" />
-            <GroupTable name="Omega" />
-            <MatchList />
-          </div>
+        <div className="flex flex-col sm:grid sm:grid-rows-[max-content,1fr] sm:grid-cols-2 max-w-[700px] mx-auto gap-2 p-4">
+          <GroupTable name="Alpha" />
+          <GroupTable name="Omega" />
+          <MatchList stageFilter="1" />
         </div>
       </StandingsProvider>
     </EditableMatchesProvider>

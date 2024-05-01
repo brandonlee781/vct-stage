@@ -1,20 +1,22 @@
+/* eslint-disable unicorn/no-array-callback-reference */
 import type { FunctionComponent } from '@/lib/types'
-import type { Match } from '@/types'
 import {
   useEditableMatches,
   useEditableMatchesDispatch,
 } from '@/hooks/useEditableMatches'
 import { convertShareableCode } from '@/lib/shareableCode'
 import { MatchView } from './MatchView'
-import { groupBy } from 'lodash-es'
+import { entries, groupBy } from 'lodash-es'
 import { useSearch } from '@tanstack/react-router'
 import { Route as LeagueRoute } from '@/routes/league.$leagueId'
+import type { Match } from '@/types'
+import type React from 'react'
 
 type MatchListProps = {
-  splitByGroup?: boolean
+  stageFilter: '1' | '2'
 }
 export const MatchList = ({
-  splitByGroup,
+  stageFilter,
 }: MatchListProps): FunctionComponent => {
   const searchParamaters = useSearch({
     from: LeagueRoute.fullPath,
@@ -36,105 +38,44 @@ export const MatchList = ({
     }
   }, [searchParamaters, dispatch])
 
-  const completed = groupBy(
-    matches.filter(m => m.completed),
-    match => match.week
-  )
-  const upcoming = groupBy(
-    matches.filter(m => !m.completed),
-    match => match.week
-  )
-  const matchWeeks = groupBy(matches, match => match.week)
-
-  if (splitByGroup) {
-    const groupedUpcoming: {
-      [key: string]: { alpha: Match[]; omega: Match[] }
-    } = {}
-    const groupedCompleted: {
-      [key: string]: { alpha: Match[]; omega: Match[] }
-    } = {}
-    Object.keys(matchWeeks).forEach(week => {
-      groupedUpcoming[week] = {
-        alpha: matchWeeks[week].filter(
-          m => !m.completed && m.group === 'alpha'
-        ),
-        omega: matchWeeks[week].filter(
-          m => !m.completed && m.group === 'omega'
-        ),
-      }
-
-      groupedCompleted[week] = {
-        alpha: matchWeeks[week].filter(m => m.completed && m.group === 'alpha'),
-        omega: matchWeeks[week].filter(m => m.completed && m.group === 'omega'),
-      }
-    })
+  const createMatchSection = ([weekNumber, weekMatches]: [
+    string,
+    Match[],
+  ]): React.ReactNode => {
     return (
-      <>
-        {Object.entries(groupedUpcoming)?.map(([week, weekMatches]) => {
-          return (
-            <Fragment key={`week-${week}`}>
-              <span className="col-span-2">Week {week}</span>
-              <div className="flex flex-col gap-y-2">
-                {weekMatches.alpha.map(m => (
-                  <MatchView match={m} key={m.id} />
-                ))}
-              </div>
-              <div className="flex flex-col gap-y-2">
-                {weekMatches.omega.map(m => (
-                  <MatchView match={m} key={m.id} />
-                ))}
-              </div>
-            </Fragment>
+      <Fragment key={`week-${weekNumber}`}>
+        <span className="col-span-2 pl-2 my-2">Week {weekNumber}</span>
+        {weekMatches.map(m => {
+          const matchClass = clsx(
+            m.group === 'alpha' && 'col-start-1',
+            m.group === 'omega' && 'col-start-2'
           )
+          return <MatchView match={m} key={m.id} className={matchClass} />
         })}
-        <div className="border-t border-b w-full border-gray-700 col-span-2 mt-2 py-2 text-center">
-          Completed
-        </div>
-        {Object.entries(groupedCompleted)?.map(([week, weekMatches]) => {
-          return (
-            <Fragment key={`week-${week}`}>
-              <span className="col-span-2">Week {week}</span>
-              <div className="flex flex-col gap-y-2">
-                {weekMatches.alpha.map(m => (
-                  <MatchView match={m} key={m.id} />
-                ))}
-              </div>
-              <div className="flex flex-col gap-y-2">
-                {weekMatches.omega.map(m => (
-                  <MatchView match={m} key={m.id} />
-                ))}
-              </div>
-            </Fragment>
-          )
-        })}
-      </>
+      </Fragment>
     )
   }
+
+  const upcomingMatchSections = entries(
+    groupBy(
+      matches.filter(m => !m.completed && m.stage === stageFilter),
+      match => match.week
+    )
+  ).map(createMatchSection)
+  const completedMatchSections = entries(
+    groupBy(
+      matches.filter(m => m.completed && m.stage === stageFilter),
+      match => match.week
+    )
+  ).map(createMatchSection)
+
   return (
-    <>
-      {Object.entries(upcoming)?.map(([week, weekMatches]) => {
-        return (
-          <Fragment key={`week-${week}`}>
-            <span className="col-span-2 pl-2">Week {week}</span>
-            {weekMatches.map(m => (
-              <MatchView match={m} key={m.id} />
-            ))}
-          </Fragment>
-        )
-      })}
+    <div className="col-span-2 flex flex-col sm:grid sm:grid-cols-2 gap-2">
+      {upcomingMatchSections}
       <div className="border-t border-b w-full border-gray-700 col-span-2 mt-2 py-2 text-center">
         Completed
       </div>
-      {Object.entries(completed)?.map(([week, weekMatches]) => {
-        return (
-          <Fragment key={`week-${week}`}>
-            <span className="col-span-2 pl-2">Week {week}</span>
-            {weekMatches.map(m => (
-              <MatchView match={m} key={m.id} />
-            ))}
-          </Fragment>
-        )
-      })}
-    </>
+      {completedMatchSections}
+    </div>
   )
 }
