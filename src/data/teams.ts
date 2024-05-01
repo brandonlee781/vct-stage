@@ -47,7 +47,7 @@ export enum Teams {
   TY = 'TYLOO',
   // EMEA
   /** BBL Esports */
-  BBL = "BBL Esports",
+  BBL = 'BBL Esports',
   /** FNATIC */
   FNC = 'FNATIC',
   /** Karmine Corp */

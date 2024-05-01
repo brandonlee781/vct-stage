@@ -1,12 +1,12 @@
-import { FunctionComponent } from '@/lib/types';
-import { getRouteApi } from '@tanstack/react-router';
-import { LEAGUES } from '../types';
-import { leagues } from '../data/leagues';
-import { GroupTable } from '../components/GroupTable';
-import { EditableMatchesProvider } from '../providers/EditableMatchesProvider';
-import { MatchList } from '../components/MatchList';
-import { LeagueToolbar } from '@/components/LeagueToolbar';
-import { StandingsProvider } from '@/providers/StandingsProvider';
+import type { FunctionComponent } from '@/lib/types'
+import { getRouteApi } from '@tanstack/react-router'
+import type { LEAGUES } from '../types'
+import { leagues } from '../data/leagues'
+import { GroupTable } from '../components/GroupTable'
+import { EditableMatchesProvider } from '../providers/EditableMatchesProvider'
+import { MatchList } from '../components/MatchList'
+import { LeagueToolbar } from '@/components/LeagueToolbar'
+import { StandingsProvider } from '@/providers/StandingsProvider'
 
 const route = getRouteApi('/league/$leagueId')
 const LeaguePage = (): FunctionComponent => {

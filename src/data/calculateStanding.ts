@@ -1,7 +1,10 @@
-import { Match, Standing } from '@/types';
-import { Teams } from './teams';
+import type { Match, Standing } from '@/types'
+import type { Teams } from './teams'
 
-export const calculateStanding = (teamName: Teams, matches: Match[] = []): Standing => {
+export const calculateStanding = (
+  teamName: Teams,
+  matches: Match[] = []
+): Standing => {
   let wins = 0
   let losses = 0
   let mapWins = 0
@@ -11,8 +14,10 @@ export const calculateStanding = (teamName: Teams, matches: Match[] = []): Stand
 
   for (const match of matches) {
     if (match.team1 === teamName || match.team2 === teamName) {
-      const mapRoundKey: keyof Match['maps'][0] = match.team1 === teamName ? 'team1Rounds' : 'team2Rounds'
-      const mapOppKey: keyof Match['maps'][0] = match.team1 === teamName ? 'team2Rounds' : 'team1Rounds'
+      const mapRoundKey: keyof Match['maps'][0] =
+        match.team1 === teamName ? 'team1Rounds' : 'team2Rounds'
+      const mapOppKey: keyof Match['maps'][0] =
+        match.team1 === teamName ? 'team2Rounds' : 'team1Rounds'
       let localMapWins = 0
       let localMapLosses = 0
 

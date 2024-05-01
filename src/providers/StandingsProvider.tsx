@@ -1,19 +1,20 @@
-import { calculateStanding } from '@/data/calculateStanding';
-import { sortTeams } from '@/data/sortTeams';
-import { League, Standing } from '@/types';
-import { useEditableMatches } from '@/hooks/useEditableMatches';
+import { calculateStanding } from '@/data/calculateStanding'
+import { sortTeams } from '@/data/sortTeams'
+import type { League, Standing } from '@/types'
+import { useEditableMatches } from '@/hooks/useEditableMatches'
+import type { FunctionComponent } from '@/lib/types'
 
 const WINS_TO_QUALIFY = 2
 
-type SortedStandings = Standing & { sortDiff: number }
-type StandingsContextData = {
+export type SortedStandings = Standing & { sortDiff: number }
+export type StandingsContextData = {
   alpha: {
     teams: SortedStandings[]
-    qualificationSpots: number;
-  },
+    qualificationSpots: number
+  }
   omega: {
-    teams: SortedStandings[],
-    qualificationSpots: number;
+    teams: SortedStandings[]
+    qualificationSpots: number
   }
 }
 
@@ -26,7 +27,10 @@ type StandingsProviderProps = {
   children: React.ReactNode
   league: League
 }
-export const StandingsProvider = ({ children, league }: StandingsProviderProps) => {
+export const StandingsProvider = ({
+  children,
+  league,
+}: StandingsProviderProps): FunctionComponent => {
   const matches = useEditableMatches()
   const [standings, setStandings] = useState<StandingsContextData>({
     alpha: { teams: [], qualificationSpots: 3 },
@@ -51,21 +55,21 @@ export const StandingsProvider = ({ children, league }: StandingsProviderProps) 
     const alpha = [...league.teams.alpha]
       .map(({ name }) => calculateStanding(name, matches))
       .sort(sortTeams)
-      .map((a, i) => {
+      .map((a, index) => {
         const oldStanding = original.alpha.findIndex(p => p.name === a.name)
         return {
           ...a,
-          sortDiff: oldStanding - i,
+          sortDiff: oldStanding - index,
         }
       })
     const omega = [...league.teams.omega]
       .map(({ name }) => calculateStanding(name, matches))
       .sort(sortTeams)
-      .map((o, i) => {
+      .map((o, index) => {
         const oldStanding = original.omega.findIndex(p => p.name === o.name)
         return {
           ...o,
-          sortDiff: oldStanding - i,
+          sortDiff: oldStanding - index,
         }
       })
     const alphaQualedTeams = alpha.filter(t => t.wins >= WINS_TO_QUALIFY).length
@@ -76,13 +80,12 @@ export const StandingsProvider = ({ children, league }: StandingsProviderProps) 
     if (alphaQualedTeams < 3) {
       alphaSpots = alphaQualedTeams
       omegaSpots += 3 - alphaQualedTeams
-      
     }
     if (omegaQualedTeams < 3) {
       omegaSpots = omegaQualedTeams
       alphaSpots += 3 - omegaQualedTeams
     }
-    
+
     setStandings({
       alpha: {
         teams: alpha,
@@ -91,7 +94,7 @@ export const StandingsProvider = ({ children, league }: StandingsProviderProps) 
       omega: {
         teams: omega,
         qualificationSpots: omegaSpots,
-      }
+      },
     })
   }, [league, matches, original])
   return (
@@ -99,8 +102,4 @@ export const StandingsProvider = ({ children, league }: StandingsProviderProps) 
       {children}
     </StandingsContext.Provider>
   )
-}
-
-export const useStandings = () => {
-  return useContext(StandingsContext)
 }

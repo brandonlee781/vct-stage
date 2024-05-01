@@ -1,24 +1,24 @@
-import {Teams} from './data/teams';
+import type { Teams } from './data/teams'
 
 export const LEAGUES = {
   americas: 'Americas',
   china: 'China',
   emea: 'EMEA',
-  pacific: 'PACIFIC'
+  pacific: 'PACIFIC',
 }
 
 export type Team = {
-  name: Teams;
+  name: Teams
   // roundDiff?: number;
 }
 
 export type Standing = Team & {
-  wins: number;
-  losses: number;
-  mapWins: number;
-  mapLosses: number;
-  roundWins: number;
-  roundLosses: number;
+  wins: number
+  losses: number
+  mapWins: number
+  mapLosses: number
+  roundWins: number
+  roundLosses: number
 }
 
 export type Match = {
@@ -29,7 +29,7 @@ export type Match = {
   completed?: boolean
   team1: Teams
   team2: Teams
-  maps: { team1Rounds: number, team2Rounds: number }[]
+  maps: { team1Rounds: number; team2Rounds: number }[]
 }
 
 // export type MatchWeek = {

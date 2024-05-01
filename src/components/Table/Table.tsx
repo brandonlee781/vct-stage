@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 
-import { TableHeader, TableHeaderProps } from './TableHeader'
-import { TableRow, TableRowProps } from './TableRow'
+import { type TableHeaderProps, TableHeader } from './TableHeader'
+import { type TableRowProps, TableRow } from './TableRow'
 
 export type Header = { text: string; link?: string; span?: number }
 
@@ -11,7 +11,9 @@ type TableProps = {
 } & React.HTMLAttributes<HTMLTableElement>
 
 interface TableComponent
-  extends React.ForwardRefExoticComponent<TableProps & React.HTMLAttributes<HTMLTableElement>> {
+  extends React.ForwardRefExoticComponent<
+    TableProps & React.HTMLAttributes<HTMLTableElement>
+  > {
   TableRow: React.ForwardRefExoticComponent<
     TableRowProps & React.HTMLAttributes<HTMLTableRowElement>
   >
@@ -41,12 +43,14 @@ export const Table = forwardRef<HTMLTableElement, TableProps>(
                         <th
                           scope="col"
                           className={clsx(
-                            'p-3 text-left text-xs font-medium uppercase tracking-wider lg:text-center h-8',
+                            'p-3 text-left text-xs font-medium uppercase tracking-wider lg:text-center h-8'
                           )}
                           key={index}
                           colSpan={header.span}
                         >
-                          {header.text && !header.link && <span>{header.text}</span>}
+                          {header.text && !header.link && (
+                            <span>{header.text}</span>
+                          )}
                           {header.text && header.link && (
                             <a
                               href={header.link}

@@ -1,6 +1,6 @@
-import { Standing } from '@/types'
+import type { Standing } from '@/types'
 
-export const sortTeams = (a: Standing, b: Standing) => {
+export const sortTeams = (a: Standing, b: Standing): number => {
   if (a.wins === b.wins) {
     if (a.losses === b.losses) {
       if (a.mapWins === b.mapWins) {
