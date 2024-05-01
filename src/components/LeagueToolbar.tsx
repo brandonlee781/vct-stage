@@ -22,7 +22,7 @@ export const LeagueToolbar = (): FunctionComponent => {
       })
   }
   return (
-    <div className="relative w-full h-10 bg-slate-700 flex flex-row justify-center items-center px-4">
+    <div className="relative w-full h-10 bg-slate-700 flex flex-row md:justify-center items-center px-4">
       <Link
         className="mx-2"
         to="/league/$leagueId"
