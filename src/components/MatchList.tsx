@@ -1,9 +1,4 @@
-/* eslint-disable unicorn/no-array-callback-reference */
 import type { FunctionComponent } from '@/lib/types'
-import {
-  useEditableMatches,
-  useEditableMatchesDispatch,
-} from '@/hooks/useEditableMatches'
 import { convertShareableCode } from '@/lib/shareableCode'
 import { MatchView } from './MatchView'
 import { entries, groupBy } from 'lodash-es'
@@ -11,6 +6,7 @@ import { useSearch } from '@tanstack/react-router'
 import { Route as LeagueRoute } from '@/routes/league.$leagueId'
 import type { Match } from '@/types'
 import type React from 'react'
+import { useMatches } from '@/store/useMatches'
 
 type MatchListProps = {
   stageFilter: '1' | '2'
@@ -21,22 +17,18 @@ export const MatchList = ({
   const searchParamaters = useSearch({
     from: LeagueRoute.fullPath,
   })
-  const matches = useEditableMatches()
-  const dispatch = useEditableMatchesDispatch()
+  const matches = useMatches(state => state.matches)
+  const editMatch = useMatches(state => state.editMatch)
 
   useEffect(() => {
     const data = convertShareableCode((searchParamaters as { s: string }).s)
 
     for (const d of data) {
-      dispatch({
-        type: 'edit',
-        id: d.id,
-        data: {
-          maps: d.maps,
-        },
+      editMatch(d.id, {
+        maps: d.maps,
       })
     }
-  }, [searchParamaters, dispatch])
+  }, [searchParamaters, editMatch])
 
   const createMatchSection = ([weekNumber, weekMatches]: [
     string,
@@ -76,7 +68,7 @@ export const MatchList = ({
         return null
       })
       .filter(Boolean)
-      .map(createMatchSection)
+      .map(data => createMatchSection(data))
   }
 
   const upcomingMatchSections = filterMatchSections(false)

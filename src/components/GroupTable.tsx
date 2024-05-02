@@ -1,16 +1,19 @@
 import type { FunctionComponent } from '@/lib/types'
 import { Table, type Header } from '@/components/Table'
 import { TeamRow } from './TeamRow'
-import { useStandings } from '@/hooks/useStandings'
+import { useMatches } from '@/store/useMatches'
 
 type GroupTableProps = {
   name: 'Alpha' | 'Omega'
 }
 
 export const GroupTable = (props: GroupTableProps): FunctionComponent => {
-  const standings = useStandings()
-
-  const group = props.name === 'Alpha' ? standings.alpha : standings.omega
+  const standings = useMatches(state => {
+    if (props.name === 'Alpha') {
+      return state.standings.alpha
+    }
+    return state.standings.omega
+  })
 
   const headers: Header[] = [
     { text: props.name },
@@ -21,12 +24,12 @@ export const GroupTable = (props: GroupTableProps): FunctionComponent => {
 
   return (
     <Table headers={headers} className="!h-auto">
-      {group.teams.map((team, index) => (
+      {standings.teams.map((team, index) => (
         <TeamRow
           team={team}
           index={index}
           key={`${props.name}-${index}`}
-          playoffSpots={group.qualificationSpots}
+          playoffSpots={standings.qualificationSpots}
         />
       ))}
     </Table>

@@ -1,8 +1,8 @@
-import { type League, LEAGUES } from '@/types'
+import { type League, LEAGUE_NAMES } from '@/types'
 import { Teams } from '../teams'
 
 export const pacificLeague: League = {
-  name: LEAGUES.pacific,
+  name: LEAGUE_NAMES.pacific,
   teams: {
     alpha: [
       { name: Teams.BL },

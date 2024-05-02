@@ -1,6 +1,6 @@
 import type { Teams } from './data/teams'
 
-export const LEAGUES = {
+export const LEAGUE_NAMES = {
   americas: 'Americas',
   china: 'China',
   emea: 'EMEA',
@@ -42,4 +42,8 @@ export type League = {
   name: string
   teams: { alpha: Team[]; omega: Team[] }
   matches: Match[]
+}
+
+export type Leagues = {
+  [key in keyof typeof LEAGUE_NAMES]: League
 }

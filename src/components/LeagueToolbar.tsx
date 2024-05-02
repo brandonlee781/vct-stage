@@ -1,13 +1,13 @@
 import { getShareableCode } from '@/lib/shareableCode'
 import type { FunctionComponent } from '@/lib/types'
-import { useEditableMatches } from '@/hooks/useEditableMatches'
-import type { LEAGUES } from '@/types'
+import type { LEAGUE_NAMES } from '@/types'
 import { Link, getRouteApi } from '@tanstack/react-router'
+import { useMatches } from '@/store/useMatches'
 const route = getRouteApi('/league/$leagueId')
 
 export const LeagueToolbar = (): FunctionComponent => {
-  const matches = useEditableMatches()
-  const params = route.useParams<{ leagueId: keyof typeof LEAGUES }>()
+  const matches = useMatches(state => state.matches)
+  const params = route.useParams<{ leagueId: keyof typeof LEAGUE_NAMES }>()
   const shareHandler = (): void => {
     const code = getShareableCode(matches)
     window.navigator.clipboard

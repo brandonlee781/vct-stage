@@ -1,6 +1,6 @@
 import type { FunctionComponent } from '@/lib/types'
 import type { Match } from '../types'
-import { useEditableMatchesDispatch } from '@/hooks/useEditableMatches'
+import { useMatches } from '@/store/useMatches'
 type MatchProps = React.HTMLAttributes<HTMLTableCellElement> & {
   match: Match
 }
@@ -22,7 +22,8 @@ export const MatchView = ({
   match,
   className,
 }: MatchProps): FunctionComponent => {
-  const dispatch = useEditableMatchesDispatch()
+  const editMatch = useMatches(state => state.editMatch)
+  const resetMatch = useMatches(state => state.resetMatch)
   const [showRounds, setShowRounds] = useState(false)
   const team1Score = match.maps.filter(
     m => m.team1Rounds > m.team2Rounds
@@ -32,21 +33,19 @@ export const MatchView = ({
   ).length
   const canInceaseScore = team1Score + team2Score < 3
 
+  const editMatchHandler = (data: Match): void => editMatch(match.id, data)
+
   const increaseTeam1Score = (): void => {
     if (team1Score < 2 && canInceaseScore) {
-      dispatch({
-        type: 'edit',
-        id: match.id,
-        data: {
-          ...match,
-          maps: [
-            ...match.maps,
-            {
-              team1Rounds: 13,
-              team2Rounds: 9,
-            },
-          ],
-        },
+      editMatchHandler({
+        ...match,
+        maps: [
+          ...match.maps,
+          {
+            team1Rounds: 13,
+            team2Rounds: 9,
+          },
+        ],
       })
     }
   }
@@ -58,31 +57,20 @@ export const MatchView = ({
       ...team1Wins,
       ...match.maps.filter(m => m.team2Rounds > m.team1Rounds),
     ]
-    dispatch({
-      type: 'edit',
-      id: match.id,
-      data: {
-        ...match,
-        maps,
-      },
-    })
+    editMatchHandler({ ...match, maps })
   }
 
   const increaseTeam2Score = (): void => {
     if (team2Score < 2 && canInceaseScore) {
-      dispatch({
-        type: 'edit',
-        id: match.id,
-        data: {
-          ...match,
-          maps: [
-            ...match.maps,
-            {
-              team1Rounds: 9,
-              team2Rounds: 13,
-            },
-          ],
-        },
+      editMatchHandler({
+        ...match,
+        maps: [
+          ...match.maps,
+          {
+            team1Rounds: 9,
+            team2Rounds: 13,
+          },
+        ],
       })
     }
   }
@@ -94,14 +82,7 @@ export const MatchView = ({
       ...team2Wins,
       ...match.maps.filter(m => m.team1Rounds > m.team2Rounds),
     ]
-    dispatch({
-      type: 'edit',
-      id: match.id,
-      data: {
-        ...match,
-        maps,
-      },
-    })
+    editMatchHandler({ ...match, maps })
   }
 
   const setMapRound = (
@@ -119,24 +100,17 @@ export const MatchView = ({
     } else {
       map.team2Rounds = value
     }
-    dispatch({
-      type: 'edit',
-      id: match.id,
-      data: {
-        ...match,
-        maps: [
-          ...match.maps.slice(0, index),
-          map,
-          ...match.maps.slice(index + 1),
-        ],
-      },
+    editMatchHandler({
+      ...match,
+      maps: [
+        ...match.maps.slice(0, index),
+        map,
+        ...match.maps.slice(index + 1),
+      ],
     })
   }
   const resetHandler = (): void => {
-    dispatch({
-      type: 'reset',
-      id: match.id,
-    })
+    resetMatch(match.id)
     setShowRounds(false)
   }
 
