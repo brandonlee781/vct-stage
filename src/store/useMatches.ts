@@ -93,11 +93,11 @@ const computeStandings = (state: MatchesState & MatchesActions): Standings => {
   let alphaSpots = 3
   let omegaSpots = 3
 
-  if (alphaQualedTeams < 3) {
+  if (alphaQualedTeams < 3 && omegaQualedTeams >= 3) {
     alphaSpots = alphaQualedTeams
     omegaSpots += 3 - alphaQualedTeams
   }
-  if (omegaQualedTeams < 3) {
+  if (omegaQualedTeams < 3 && alphaQualedTeams >= 3) {
     omegaSpots = omegaQualedTeams
     alphaSpots += 3 - omegaQualedTeams
   }
@@ -140,7 +140,10 @@ export const useMatches = create<MatchesState & MatchesActions>()(
       }),
       computeMatchState
     ),
-    { name: 'MatchesStore' }
+    {
+      name: 'MatchesStore',
+      enabled: import.meta.env.DEV,
+    }
   )
 )
 
