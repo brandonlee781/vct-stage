@@ -32,7 +32,7 @@ export type Standings = {
     qualificationSpots: number
   }
 }
-type ComputedState = {
+type ComputedMatchState = {
   standings: Standings
   matches: Match[]
 }
@@ -116,7 +116,7 @@ const computeStandings = (state: MatchesState & MatchesActions): Standings => {
 
 const computeMatchState = (
   state: MatchesState & MatchesActions
-): ComputedState => {
+): ComputedMatchState => {
   let matches: Match[] = []
   if (state.current) {
     matches = state.leagues[state.current].matches
