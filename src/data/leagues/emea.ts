@@ -50,7 +50,7 @@ export const emeaLeague: League = {
     { id: 26, stage: '1', week: 5, team1: Teams.KC, team2: Teams.TH, maps: [{ team1Rounds: 12, team2Rounds: 14 },{ team1Rounds: 13, team2Rounds: 5 },{ team1Rounds: 9, team2Rounds: 13 }], completed: true },
     { id: 27, stage: '1', week: 5, team1: Teams.VIT, team2: Teams.KOI, maps: [{ team1Rounds: 5, team2Rounds: 13 },{ team1Rounds: 13, team2Rounds: 7 },{ team1Rounds: 4, team2Rounds: 13 }], completed: true },
     { id: 28, stage: '1', week: 5, team1: Teams.NAVI, team2: Teams.FNC, maps: [{ team1Rounds: 6, team2Rounds: 13 },{ team1Rounds: 13, team2Rounds: 8 },{ team1Rounds: 13, team2Rounds: 3 }], completed: true },
-    { id: 29, stage: '1', week: 5, team1: Teams.TL, team2: Teams.GM8, maps: [], completed: false },
+    { id: 29, stage: '1', week: 5, team1: Teams.TL, team2: Teams.GM8, maps: [{ team1Rounds: 13, team2Rounds: 4 },{ team1Rounds: 13, team2Rounds: 2 }], completed: true },
     { id: 30, stage: '1', week: 5, team1: Teams.BBL, team2: Teams.FUT, maps: [], completed: false },
     /* eslint-enable prettier/prettier */
   ],
