@@ -48,7 +48,7 @@ export const americasLeague: League = {
     {id: 24, team1: Teams.NRG, team2: Teams.EG, maps: [ {team1Rounds: 6, team2Rounds: 13}, {team1Rounds: 16, team2Rounds: 14}, {team1Rounds: 11, team2Rounds: 13}, ], completed: true, stage: '1', week: 4, group: 'cross', },
     {id: 25, team1: Teams.KRU, team2: Teams[ '100T' ], maps: [ {team1Rounds: 13, team2Rounds: 7}, {team1Rounds: 11, team2Rounds: 13}, {team1Rounds: 13, team2Rounds: 8}, ], completed: true, stage: '1', week: 4, group: 'cross', },
 
-    {id: 26, stage: '1', week: 5, group: 'cross', team1: Teams.SEN, team2: Teams.FUR, maps: [], completed: false},
+    {id: 26, stage: '1', week: 5, group: 'cross', team1: Teams.SEN, team2: Teams.FUR, maps: [{team1Rounds: 13, team2Rounds: 5 }, {team1Rounds: 13, team2Rounds: 9 }], completed: true },
     {id: 27, stage: '1', week: 5, group: 'cross', team1: Teams.NRG, team2: Teams[ '100T' ], maps: [], completed: false},
     {id: 28, stage: '1', week: 5, group: 'cross', team1: Teams.KRU, team2: Teams.LEV, maps: [], completed: false},
     {id: 29, stage: '1', week: 5, group: 'cross', team1: Teams.C9, team2: Teams.MIBR, maps: [], completed: false},
