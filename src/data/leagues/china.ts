@@ -48,10 +48,10 @@ export const chinaLeague: League = {
     { id: 24, stage: '1', week: 4, team1: Teams.BBG, team2: Teams.JD, maps: [{ team1Rounds: 13, team2Rounds: 8 },{ team1Rounds: 13, team2Rounds: 10 }], completed: true },
     { id: 25, stage: '1', week: 5, team1: Teams.EDG, team2: Teams.AG, maps: [{ team1Rounds: 13, team2Rounds: 6 },{ team1Rounds: 13, team2Rounds: 5 }], completed: true },
     { id: 26, stage: '1', week: 5, team1: Teams.WOL, team2: Teams.JD, maps: [{ team1Rounds: 8, team2Rounds: 13 },{ team1Rounds: 1, team2Rounds: 13 }], completed: true },
-    { id: 27, stage: '1', week: 5, team1: Teams.DRG, team2: Teams.TY, maps: [], completed: false },
-    { id: 28, stage: '1', week: 5, team1: Teams.BBG, team2: Teams.FPX, maps: [], completed: false },
-    { id: 29, stage: '1', week: 5, team1: Teams.NOVA, team2: Teams.TEC, maps: [], completed: false },
-    { id: 30, stage: '1', week: 5, team1: Teams.TE, team2: Teams.EDG, maps: [], completed: false },
+    { id: 27, stage: '1', week: 5, team1: Teams.DRG, team2: Teams.TY, maps: [{ team1Rounds: 10, team2Rounds: 13 },{ team1Rounds: 8, team2Rounds: 13 }], completed: true },
+    { id: 28, stage: '1', week: 5, team1: Teams.BBG, team2: Teams.FPX, maps: [{ team1Rounds: 2, team2Rounds: 13 },{ team1Rounds: 6, team2Rounds: 13 }], completed: true },
+    { id: 29, stage: '1', week: 5, team1: Teams.NOVA, team2: Teams.TEC, maps: [{ team1Rounds: 13, team2Rounds: 6 },{ team1Rounds: 13, team2Rounds: 6 }], completed: true },
+    { id: 30, stage: '1', week: 5, team1: Teams.TE, team2: Teams.EDG, maps: [{ team1Rounds: 13, team2Rounds: 15 },{ team1Rounds: 12, team2Rounds: 14 }], completed: true },
     /* eslint-enable prettier/prettier */
   ],
 }
