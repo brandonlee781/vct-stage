@@ -51,8 +51,8 @@ export const americasLeague: League = {
     {id: 26, stage: '1', week: 5, group: 'cross', team1: Teams.SEN, team2: Teams.FUR, maps: [{team1Rounds: 13, team2Rounds: 5 }, {team1Rounds: 13, team2Rounds: 9 }], completed: true },
     {id: 27, stage: '1', week: 5, group: 'cross', team1: Teams.NRG, team2: Teams[ '100T' ], maps: [{team1Rounds: 8, team2Rounds: 13 }, {team1Rounds: 7, team2Rounds: 13 }], completed: true },
     {id: 28, stage: '1', week: 5, group: 'cross', team1: Teams.KRU, team2: Teams.LEV, maps: [{ team1Rounds: 4, team2Rounds: 13 },{ team1Rounds: 14, team2Rounds: 12 },{ team1Rounds: 10, team2Rounds: 13 }], completed: true},
-    {id: 29, stage: '1', week: 5, group: 'cross', team1: Teams.C9, team2: Teams.MIBR, maps: [], completed: false},
-    {id: 30, stage: '1', week: 5, group: 'cross', team1: Teams.G2, team2: Teams.LLL, maps: [], completed: false},
+    {id: 29, stage: '1', week: 5, group: 'cross', team1: Teams.C9, team2: Teams.MIBR, maps: [{ team1Rounds: 14, team2Rounds: 12 },{ team1Rounds: 13, team2Rounds: 9 }], completed: true },
+    {id: 30, stage: '1', week: 5, group: 'cross', team1: Teams.G2, team2: Teams.LLL, maps: [{ team1Rounds: 11, team2Rounds: 13 },{ team1Rounds: 4, team2Rounds: 13 }], completed: true },
     /* eslint-enable prettier/prettier */
   ],
 }
