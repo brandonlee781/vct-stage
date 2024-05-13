@@ -38,11 +38,7 @@ export const MatchList = ({
       <Fragment key={`week-${weekNumber}`}>
         <span className="col-span-2 pl-2 my-2">Week {weekNumber}</span>
         {weekMatches.map(m => {
-          const matchClass = clsx(
-            m.group === 'alpha' && 'col-start-1',
-            m.group === 'omega' && 'col-start-2'
-          )
-          return <MatchView match={m} key={m.id} className={matchClass} />
+          return <MatchView match={m} key={m.id} />
         })}
       </Fragment>
     )
