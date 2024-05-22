@@ -20,6 +20,7 @@ export const GroupTable = (props: GroupTableProps): FunctionComponent => {
     { text: 'W/L' },
     { text: 'Maps' },
     { text: 'RNDS' },
+    { text: 'Points' },
   ]
 
   return (

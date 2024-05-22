@@ -52,24 +52,24 @@ const computeStandings = (state: MatchesState & MatchesActions): Standings => {
   if (!state.current) return defaultStandings
   const league = state.leagues[state.current]
   const alphaOriginal = [...league.teams.alpha]
-    .map(({ name }) =>
+    .map(team =>
       calculateStanding(
-        name,
+        team,
         league.matches.filter(m => m.completed)
       )
     )
     .sort(sortTeams)
   const omegaOriginal = [...league.teams.omega]
-    .map(({ name }) =>
+    .map(team =>
       calculateStanding(
-        name,
+        team,
         league.matches.filter(m => m.completed)
       )
     )
     .sort(sortTeams)
 
   const alpha = [...league.teams.alpha]
-    .map(({ name }) => calculateStanding(name, league.matches))
+    .map(team => calculateStanding(team, league.matches))
     .sort(sortTeams)
     .map((a, index) => {
       const oldStanding = alphaOriginal.findIndex(p => p.name === a.name)
@@ -79,7 +79,7 @@ const computeStandings = (state: MatchesState & MatchesActions): Standings => {
       }
     })
   const omega = [...league.teams.omega]
-    .map(({ name }) => calculateStanding(name, league.matches))
+    .map(team => calculateStanding(team, league.matches))
     .sort(sortTeams)
     .map((o, index) => {
       const oldStanding = omegaOriginal.findIndex(p => p.name === o.name)

@@ -9,6 +9,7 @@ export const LEAGUE_NAMES = {
 
 export type Team = {
   name: Teams
+  points?: number
   // roundDiff?: number;
 }
 
@@ -19,6 +20,7 @@ export type Standing = Team & {
   mapLosses: number
   roundWins: number
   roundLosses: number
+  points?: number
 }
 
 export type Match = {

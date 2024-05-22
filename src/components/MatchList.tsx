@@ -71,7 +71,7 @@ export const MatchList = ({
   const completedMatchSections = filterMatchSections(true)
 
   return (
-    <div className="col-span-2 flex flex-col sm:grid sm:grid-cols-2 gap-2">
+    <div className="col-span-2 flex flex-col sm:grid sm:grid-cols-2 gap-2 sm:px-14">
       {upcomingMatchSections}
       <div className="border-t border-b w-full border-gray-700 col-span-2 mt-2 py-2 text-center">
         Completed

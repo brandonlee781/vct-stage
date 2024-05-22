@@ -7,10 +7,10 @@ const LeaguePage = (): FunctionComponent => {
   return (
     <div>
       <LeagueToolbar />
-      <div className="flex flex-col sm:grid sm:grid-rows-[max-content,1fr] sm:grid-cols-2 max-w-[700px] mx-auto gap-2 p-4">
+      <div className="flex flex-col sm:grid sm:grid-rows-[max-content,1fr] sm:grid-cols-2 max-w-[800px] mx-auto gap-2 p-4">
         <GroupTable name="Alpha" />
         <GroupTable name="Omega" />
-        <MatchList stageFilter="1" />
+        <MatchList stageFilter="2" />
       </div>
     </div>
   )

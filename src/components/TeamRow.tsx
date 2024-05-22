@@ -56,6 +56,7 @@ export const TeamRow = ({
       >
         {roundDiff?.toString()}
       </td>
+      <td className={'text-center px-2 text-gray-400'}>{team.points || 0}</td>
     </Table.TableRow>
   )
 }
