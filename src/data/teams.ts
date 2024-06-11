@@ -24,13 +24,13 @@ export enum Teams {
   MIBR = 'MIBR',
   // China
   /** Bilibili Gaming */
-  BBG = 'Bilibili Gaming',
+  BLG = 'Bilibili Gaming',
   /** Dragon Ranger Gaming */
   DRG = 'Dragon Ranger',
   /** EDward Gaming */
   EDG = 'EDward Gaming',
   /** Nova Esports */
-  NOVA = 'Nova Esports',
+  NV = 'Nova Esports',
   /** Wolves Esports */
   WOL = 'Wolves Esports',
   /** All Gamers */
@@ -38,13 +38,13 @@ export enum Teams {
   /** FunPlux Pheonix */
   FPX = 'FunPlux Pheonix',
   /** JD Gaming */
-  JD = 'JD Gaming',
+  JDG = 'JD Gaming',
   /** Titan Esports Club */
   TEC = 'Titan Esports Club',
   /** Trace Esports */
   TE = 'Trace Esports',
   /** TYLOO */
-  TY = 'TYLOO',
+  TYL = 'TYLOO',
   // EMEA
   /** BBL Esports */
   BBL = 'BBL Esports',
