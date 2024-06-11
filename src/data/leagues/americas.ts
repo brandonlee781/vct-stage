@@ -76,7 +76,7 @@ export const americasLeague: League = {
     { id: 51, stage: '2', week: 4, group: 'alpha', team1: Teams.C9, team2: Teams.KRU, maps: [], completed: false },
     { id: 52, stage: '2', week: 4, group: 'omega', team1: Teams.EG, team2: Teams.MIBR, maps: [], completed: false },
     { id: 53, stage: '2', week: 4, group: 'omega', team1: Teams.LEV, team2: Teams.FUR, maps: [], completed: false },
-    { id: 54, stage: '2', week: 4, group: 'alpha', team1: Teams.LLL, team2: Teams['100T'], maps: [], completed: false },
+    { id: 54, stage: '2', week: 4, group: 'omega', team1: Teams.LLL, team2: Teams['100T'], maps: [], completed: false },
     { id: 55, stage: '2', week: 4, group: 'alpha', team1: Teams.SEN, team2: Teams.G2, maps: [], completed: false },
     /* eslint-enable prettier/prettier */
   ],
