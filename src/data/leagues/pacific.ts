@@ -5,19 +5,19 @@ export const pacificLeague: League = {
   name: LEAGUE_NAMES.pacific,
   teams: {
     alpha: [
-      { name: Teams.BL, points: 1 },
-      { name: Teams.GG, points: 6 },
-      { name: Teams.GE, points: 2 },
+      { name: Teams.GG, points: 12 },
       { name: Teams.T1, points: 4 },
       { name: Teams.TS, points: 3 },
+      { name: Teams.GE, points: 2 },
+      { name: Teams.BL, points: 1 },
     ],
     omega: [
-      { name: Teams.DFM, points: 1 },
-      { name: Teams.DRX, points: 6 },
-      { name: Teams.RRQ, points: 3 },
       { name: Teams.PRX, points: 10 },
+      { name: Teams.DRX, points: 6 },
       { name: Teams.TAL, points: 4 },
+      { name: Teams.RRQ, points: 3 },
       { name: Teams.ZETA, points: 2 },
+      { name: Teams.DFM, points: 1 },
     ],
   },
   matches: [

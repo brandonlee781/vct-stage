@@ -5,18 +5,18 @@ export const americasLeague: League = {
   name: LEAGUE_NAMES.americas,
   teams: {
     alpha: [
-      { name: Teams.C9, points: 5 },
+      { name: Teams.SEN, points: 9 },
       { name: Teams.G2, points: 6 },
       { name: Teams.KRU, points: 6 },
+      { name: Teams.C9, points: 5 },
       { name: Teams.NRG, points: 3 },
-      { name: Teams.SEN, points: 9 },
     ],
     omega: [
       { name: Teams['100T'], points: 9 },
-      { name: Teams.EG, points: 2 },
-      { name: Teams.FUR, points: 0 },
       { name: Teams.LEV, points: 6 },
+      { name: Teams.EG, points: 2 },
       { name: Teams.LLL, points: 2 },
+      { name: Teams.FUR, points: 0 },
       { name: Teams.MIBR, points: 0 },
     ],
   },

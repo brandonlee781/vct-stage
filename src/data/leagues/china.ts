@@ -5,19 +5,19 @@ export const chinaLeague: League = {
   name: LEAGUE_NAMES.china,
   teams: {
     alpha: [
-      { name: Teams.BLG, points: 2 },
+      { name: Teams.EDG, points: 14 },
       { name: Teams.DRG, points: 5 },
-      { name: Teams.EDG, points: 11 },
+      { name: Teams.BLG, points: 2 },
       { name: Teams.NV, points: 2 },
       { name: Teams.WOL, points: 2 },
     ],
     omega: [
-      { name: Teams.AG, points: 3 },
       { name: Teams.FPX, points: 8 },
-      { name: Teams.JDG, points: 1 },
-      { name: Teams.TEC, points: 2 },
       { name: Teams.TE, points: 4 },
+      { name: Teams.AG, points: 3 },
       { name: Teams.TYL, points: 2 },
+      { name: Teams.TEC, points: 2 },
+      { name: Teams.JDG, points: 1 },
     ],
   },
   matches: [

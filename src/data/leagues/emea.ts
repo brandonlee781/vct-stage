@@ -5,19 +5,19 @@ export const emeaLeague: League = {
   name: LEAGUE_NAMES.emea,
   teams: {
     alpha: [
-      { name: Teams.BBL, points: 3 },
       { name: Teams.FNC, points: 9 },
-      { name: Teams.KC, points: 4 },
+      { name: Teams.KC, points: 7 },
+      { name: Teams.BBL, points: 3 },
       { name: Teams.TL, points: 3 },
       { name: Teams.VIT, points: 3 },
     ],
     omega: [
       { name: Teams.FUT, points: 6 },
+      { name: Teams.TH, points: 6 },
+      { name: Teams.NAVI, points: 4 },
       { name: Teams.GM8, points: 2 },
       { name: Teams.GX, points: 1 },
       { name: Teams.KOI, points: 1 },
-      { name: Teams.NAVI, points: 4 },
-      { name: Teams.TH, points: 6 },
     ],
   },
   matches: [
