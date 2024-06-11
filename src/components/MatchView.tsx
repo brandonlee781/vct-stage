@@ -5,13 +5,6 @@ type MatchProps = React.HTMLAttributes<HTMLTableCellElement> & {
   match: Match
 }
 
-const matchWrapperClass = clsx(
-  'w-full',
-  'grid grid-cols-[1fr,32px,32px,1fr] gap-1 items-center self-start',
-  'bg-vctMid-500',
-  'rounded'
-)
-
 const showRoundsButtonClass = clsx(
   'h-2 py-1 w-full text-[8px]',
   'cursor-pointer hover:bg-gray-500 border-t border-gray-600',
@@ -114,8 +107,24 @@ export const MatchView = ({
     setShowRounds(false)
   }
 
+  const matchWrapperClass = clsx(
+    'w-full relative',
+    'grid grid-cols-[1fr,32px,32px,1fr] gap-1 items-center self-start',
+    'bg-vctMid-500',
+    'rounded'
+  )
+
+  let overlayClass =
+    'absolute top-0 bottom-0 left-0 right-0 pointer-events-none'
+  if (match.group === 'alpha') {
+    overlayClass += ' bg-orange-800/5'
+  } else if (match.group === 'omega') {
+    overlayClass += ' bg-green-800/10'
+  }
+
   return (
     <div className={`${matchWrapperClass} ${className}`}>
+      <div className={overlayClass}></div>
       <div className="px-2 text-white text-sm">{match.team1}</div>
       <MatchViewButton
         disabled={match.completed}

@@ -29,6 +29,7 @@ export const GroupTable = (props: GroupTableProps): FunctionComponent => {
         <TeamRow
           team={team}
           index={index}
+          group={props.name}
           key={`${props.name}-${index}`}
           playoffSpots={standings.qualificationSpots}
         />

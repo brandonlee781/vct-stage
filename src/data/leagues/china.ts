@@ -52,6 +52,7 @@ export const chinaLeague: League = {
     { id: 28, stage: '1', week: 5, team1: Teams.BLG, team2: Teams.FPX, maps: [{ team1Rounds: 2, team2Rounds: 13 },{ team1Rounds: 6, team2Rounds: 13 }], completed: true },
     { id: 29, stage: '1', week: 5, team1: Teams.NV, team2: Teams.TEC, maps: [{ team1Rounds: 13, team2Rounds: 6 },{ team1Rounds: 13, team2Rounds: 6 }], completed: true },
     { id: 30, stage: '1', week: 5, team1: Teams.TE, team2: Teams.EDG, maps: [{ team1Rounds: 13, team2Rounds: 15 },{ team1Rounds: 12, team2Rounds: 14 }], completed: true },
+
     { id: 31, stage: '2', week: 1, team1: Teams.TEC, team2: Teams.JDG, maps: [], completed: false },
     { id: 32, stage: '2', week: 1, team1: Teams.AG, team2: Teams.TYL, maps: [], completed: false },
     { id: 33, stage: '2', week: 1, team1: Teams.BBL, team2: Teams.WOL, maps: [], completed: false },

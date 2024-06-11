@@ -5,16 +5,22 @@ import { Table } from '@/components/Table'
 type TeamRowProps = {
   team: Standing & { sortDiff: number }
   index: number
+  group: 'Alpha' | 'Omega'
   playoffSpots: number
 }
 export const TeamRow = ({
   team,
   index,
+  group,
   playoffSpots,
 }: TeamRowProps): FunctionComponent => {
   const roundDiff = team.roundWins - team.roundLosses
+  const rowClass = clsx(
+    'h-full',
+    group === 'Alpha' ? 'bg-orange-800/5' : 'bg-green-800/10'
+  )
   return (
-    <Table.TableRow className="h-full">
+    <Table.TableRow className={rowClass}>
       <td>
         <div className="flex flex-nowrap h-full items-center">
           <div
