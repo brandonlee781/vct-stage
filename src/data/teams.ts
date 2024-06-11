@@ -40,7 +40,7 @@ export enum Teams {
   /** JD Gaming */
   JDG = 'JD Gaming',
   /** Titan Esports Club */
-  TEC = 'Titan Esports Club',
+  TEC = 'Titan Esports',
   /** Trace Esports */
   TE = 'Trace Esports',
   /** TYLOO */
