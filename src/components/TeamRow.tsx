@@ -14,7 +14,7 @@ export const TeamRow = ({
 }: TeamRowProps): FunctionComponent => {
   const roundDiff = team.roundWins - team.roundLosses
   return (
-    <Table.TableRow>
+    <Table.TableRow className="h-full">
       <td>
         <div className="flex flex-nowrap h-full items-center">
           <div
